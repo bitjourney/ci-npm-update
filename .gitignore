@@ -1,0 +1,11 @@
+*~
+*.log
+
+node_modules/
+typings/
+
+npm-shrinkwrap.json
+
+*.js
+*.js.map
+*.d.ts

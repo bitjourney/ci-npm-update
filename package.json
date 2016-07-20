@@ -1,0 +1,25 @@
+{
+  "name": "npm-update-scanner",
+  "version": "1.0.0",
+  "description": "Scans NPM dependencies to get their version-to-version diffs",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "update",
+    "ci"
+  ],
+  "author": "FUJI Goro",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 4.2.0"
+  },
+  "devDependencies": {
+    "typescript": ">= 2.0.0",
+    "typescript-formatter": "^2.3.0",
+    "dtsm": "^1.1.0"
+  }
+}
