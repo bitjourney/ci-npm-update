@@ -5,5 +5,4 @@ machine:
 dependencies:
   pre:
     - npm run setup
-    - npm run compile
-    - npm run compile_test
+    - npm run build

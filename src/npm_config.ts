@@ -10,7 +10,7 @@ export class NpmConfig {
     repository: {
         type: string;
         url: string;
-    }
+    };
 
     dependencies: Map<string, string>;
     devDependencies: Map<string, string>;

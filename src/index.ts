@@ -1,7 +1,5 @@
 import { ShrinkWrap } from "./shrink_wrap";
 import { Issue } from "./issue";
-//import {NpmConfig} from "./npm_config";
-
 
 ShrinkWrap.read().then((shrinkWrap) => {
     return shrinkWrap.getLatest();

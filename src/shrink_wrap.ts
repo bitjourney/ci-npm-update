@@ -25,12 +25,13 @@ export class ShrinkWrap {
         });
     }
 
-    name: string
-    version: string
-    private dependencies: Map<string, ShrinkWrapData>
+    name: string;
+    version: string;
+
+    private dependencies: Map<string, ShrinkWrapData>;
 
     constructor(json: any) {
-        Object.assign(this, json)
+        Object.assign(this, json);
     }
 
     getDependencyNames(): string[] {
@@ -57,7 +58,7 @@ export class ShrinkWrap {
                     } else {
                         resolve(new PackageInfo(version, new NpmConfig(JSON.parse(body))));
                     }
-                })
+                });
             });
         }));
     }
