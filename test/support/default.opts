@@ -1,0 +1,11 @@
+--require source-map-support/register
+--require ./test/support/mocha-setup-node.js
+--require ./test/helpers/test-helper.js
+
+--reporter dot
+--bail
+--full-trace
+--check-leaks
+
+--recursive
+--timeout 1000

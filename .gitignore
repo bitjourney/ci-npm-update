@@ -3,9 +3,8 @@
 
 node_modules/
 typings/
+build/
+lib/
 
 npm-shrinkwrap.json
 
-*.js
-*.js.map
-*.d.ts
