@@ -4,10 +4,10 @@
   "description": "Scans NPM dependencies to get their version-to-version diffs",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install && dtsm install",
+    "setup": "npm install",
     "build": "npm run lint && tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "mocha --opts test/support/default.opts build/test"
+    "test": "tsc -p test && mocha --opts test/support/default.opts test.build"
   },
   "keywords": [
     "npm",
@@ -21,17 +21,21 @@
     "node": ">= 4.2.0"
   },
   "dependencies": {
+    "@types/node": "*",
     "semver": "^5.3.0",
-    "request": "^2.73.0"
+    "@types/semver": "*",
+    "request": "^2.73.0",
+    "@types/request": "*"
   },
   "devDependencies": {
-    "typescript": ">= 2.0.0",
-    "typescript-formatter": "^2.3.0",
-    "tslint": "^3.13.0",
-    "npm-run-all": "^2.3.0",
-    "dtsm": "^1.1.0",
     "mocha": "^2.5.1",
+    "@types/mocha": "*",
+    "npm-run-all": "^2.3.0",
     "power-assert": "^1.4.1",
-    "source-map-support": "^0.4.0"
+    "@types/power-assert": "*",
+    "source-map-support": "^0.4.0",
+    "tslint": "^3.13.0",
+    "typescript": ">= 2.0.0",
+    "typescript-formatter": "^2.3.0"
   }
 }
