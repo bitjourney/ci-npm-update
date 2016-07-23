@@ -1,5 +1,4 @@
 
-
 export class NpmConfig {
 
     // https://docs.npmjs.com/files/package.json

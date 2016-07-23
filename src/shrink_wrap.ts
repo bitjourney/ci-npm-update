@@ -51,12 +51,15 @@ export class ShrinkWrap {
             const version = this.getDependencyVersion(name);
             const versionRange = this.getDependencyVersionRange(name);
 
+            console.time(`${name}@${version}`);
             return new Promise<PackageInfo>((resolve, reject) => {
                 request(`${REGISTRY_ENDPOINT}/${name}/${versionRange}`, (err, _res, body) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(new PackageInfo(version, new NpmConfig(JSON.parse(body))));
+                        const npmConfig = new NpmConfig(JSON.parse(body));
+                        console.timeEnd(`${name}@${version}`);
+                        resolve(new PackageInfo(version, npmConfig));
                     }
                 });
             });

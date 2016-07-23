@@ -1,8 +1,17 @@
 import * as semver from "semver";
 import { NpmConfig } from "./npm_config";
 
-
 export class PackageInfo {
+
+    static fixupUrl(repository: { url: string }): string {
+        if (!(repository && repository.url)) {
+            return null;
+        }
+        // url can be: git+https://github.com/foo/bar.git
+        const matched = /:\/\/([^\/]+\/[^\/]+\/[^\.\/]+)/.exec(repository.url);
+        return matched ? `https://${matched[1]}` : repository.url;
+    }
+
     name: string;
 
     installedVersion: string;
@@ -10,16 +19,11 @@ export class PackageInfo {
 
     repositoryUrl: string;
 
-    static fixupUrl(url: string): string {
-        const matched = /:\/\/(github.com\/[^\/]+\/[^\.\/]+)/.exec(url);
-        return matched ? `https://${matched[1]}` : url;
-    }
-
     constructor(installedVersion: string, npmConfig: NpmConfig) {
         this.name = npmConfig.name;
         this.installedVersion = installedVersion;
         this.latestVersion = npmConfig.version;
-        this.repositoryUrl = PackageInfo.fixupUrl(npmConfig.repository.url);
+        this.repositoryUrl = PackageInfo.fixupUrl(npmConfig.repository);
     }
 
     isOutdated(): boolean {
