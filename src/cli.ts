@@ -1,14 +1,9 @@
 
 import * as main from "./index";
-import {execSync} from "child_process";
 
 function die(message: string) {
     console.error(message);
     process.exit(1);
-}
-
-function runSync(command: string): string {
-    return execSync(command).toString().trim();
 }
 
 const options: main.Options = {
