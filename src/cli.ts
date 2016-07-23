@@ -7,11 +7,11 @@ function die(message: string) {
 }
 
 const options: main.Options = {
-    githubAccessToken: null,
+    githubAccessToken: process.env.GITHUB_ACCESS_TOKEN,
 };
 
 const args = process.argv.splice(2);
-if (args.length === 0) {
+if (args.length === 0 && !options.githubAccessToken) {
     die(`usage: ${process.argv[1]} --token $GITHUB_ACCESS_TOKEN`);
 }
 for (let i = 0; i < args.length; i++) {
@@ -21,6 +21,8 @@ for (let i = 0; i < args.length; i++) {
             die(`No value for ${arg}`);
         }
         options.githubAccessToken = args[i];
+    } else {
+        die(`Unknown option: ${arg}`);
     }
 }
 
