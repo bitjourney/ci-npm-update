@@ -1,7 +1,7 @@
 {
-  "name": "npm-update-scanner",
+  "name": "ci-npm-update",
   "version": "1.0.0",
-  "description": "Scans NPM dependencies to get their version-to-version diffs",
+  "description": "Keep NPM dependencies up-to-date with CI, providing version-to-version diff for each library",
   "main": "index.js",
   "scripts": {
     "setup": "npm install",
@@ -18,7 +18,7 @@
   "author": "FUJI Goro",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">= 4.2.0"
+    "node": ">= 6.0.0"
   },
   "dependencies": {
     "@types/moment": "^2.11.28",
