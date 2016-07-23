@@ -17,6 +17,5 @@
         "tabSize": 2
     },
     "exclude": [
-        "support/mocha-setup-node.js"
     ]
 }

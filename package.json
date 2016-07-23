@@ -7,7 +7,7 @@
     "setup": "npm install",
     "build": "npm run lint && tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "tsc -p test && mocha --opts test/support/default.opts test.build"
+    "test": "npm run build && mocha --compilers ts:ts-node/register --opts test/support/default.opts test/**/*.test.ts"
   },
   "keywords": [
     "npm",
@@ -32,12 +32,15 @@
     "semver": "^5.3.0"
   },
   "devDependencies": {
-    "mocha": "^2.5.1",
     "@types/mocha": "*",
+    "@types/power-assert": "*",
+    "espower-typescript": "^5.0.1",
+    "mocha": "^2.5.1",
     "npm-run-all": "^2.3.0",
     "power-assert": "^1.4.1",
-    "@types/power-assert": "*",
     "source-map-support": "^0.4.0",
+    "to-iso-string": "0.0.2",
+    "ts-node": "^1.2.1",
     "tslint": "^3.13.0",
     "typescript": ">= 2.0.0",
     "typescript-formatter": "^2.3.0"

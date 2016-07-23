@@ -8,30 +8,59 @@ export type GitHubPullRequestResponse = {
     html_url: string,
 };
 
+export type GitHubPullRequestParameters = {
+    title: string,
+    body: string,
+    head: string,
+    base: string,
+};
+
 export class GitHubApi {
+
+    static parseUrl(url: string): {host: string, owner: string, repository: string} {
+        const matched =  /^(?:git@|(?:git\+)?https:\/\/)([^\/:]+)[\/:]([^\/]+)\/([^\/]+)(?!\.git)/.exec(url);
+        if (!matched) {
+            throw Error(`Cannot parse git repository URL: ${url}`);
+        }
+        return {
+            host: matched[1],
+            owner: matched[2],
+            repository: matched[3].replace(/\.git$/, ""),
+        };
+    }
+
+    static extractEndpoint(url: string): string {
+        const host = this.parseUrl(url).host;
+        if (host === "github.com") {
+            return "https://api.github.com";
+        } else {
+            // https://developer.github.com/v3/enterprise/
+            return `https://${host}/api/v3`;
+        }
+    }
+    static extractOwner(url: string): string {
+        return this.parseUrl(url).owner;
+    }
+    static extractRepository(url: string): string {
+        return this.parseUrl(url).repository;
+    }
+
     endpoint: string;
     token: string;
     owner: string;
     repository: string;
 
     constructor(options: {
-        endpoint: string,
+        repositoryUrl: string,
         token: string,
-        owner: string,
-        repository: string
     }) {
-        this.endpoint = options.endpoint;
+        this.endpoint = GitHubApi.extractEndpoint(options.repositoryUrl);
         this.token = options.token;
-        this.owner = options.owner;
-        this.repository = options.repository;
+        this.owner = GitHubApi.extractOwner(options.repositoryUrl);
+        this.repository = GitHubApi.extractRepository(options.repositoryUrl);
     }
 
-    createPullRequest(options: {
-        title: string,
-        body: string,
-        head: string,
-        base: string,
-    }): Promise<GitHubPullRequestResponse> {
+    createPullRequest(parameters: GitHubPullRequestParameters): Promise<GitHubPullRequestResponse> {
         return new Promise<GitHubPullRequestResponse>((resolve, reject) => {
             // https://developer.github.com/v3/pulls/#create-a-pull-request
             request.post(`${this.endpoint}/repos/${this.owner}/${this.repository}/pulls`,
@@ -41,10 +70,10 @@ export class GitHubApi {
                         "authorization": `token ${this.token}`,
                     },
                     json: {
-                        title: options.title,
-                        body: options.body,
-                        head: options.head,
-                        base: options.base,
+                        title: parameters.title,
+                        body: parameters.body,
+                        head: parameters.head,
+                        base: parameters.base,
                     },
                 },
                 (err, _response, body) => {

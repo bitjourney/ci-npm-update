@@ -1,6 +1,6 @@
 import { ShrinkWrap } from "./shrink_wrap";
 import * as Issue from "./issue";
-import { GitHubApi } from "./github";
+import { GitHubApi, GitHubPullRequestParameters } from "./github";
 import { exec } from "child_process";
 import * as moment from "moment";
 
@@ -60,19 +60,23 @@ ShrinkWrap.read().then((shrinkWrap) => {
     }).then((_result) => {
         return run("git rev-parse --abbrev-ref HEAD");
     }).then((baseBranch) => {
-        return Promise.resolve({
-            title: `npm update at ${new Date()}`,
-            body: issue,
-            head: branch,
-            base: baseBranch,
-        });
+        return Promise.all([
+            run("git remote get-url --push origin"),
+            Promise.resolve({
+                title: `npm update at ${new Date()}`,
+                body: issue,
+                head: branch,
+                base: baseBranch,
+            }),
+        ]);
     });
-}).then((pullRequestData) => {
+}).then((params: [string, GitHubPullRequestParameters]) => {
+    // FIXME: parameter destructuring
+    const repositoryUrl = params[0];
+    const pullRequestData = params[1];
     return new GitHubApi({
-        endpoint: "https://api.github.com",
+        repositoryUrl: repositoryUrl,
         token: GITHUB_ACCESS_TOKEN,
-        owner: "gfx",
-        repository: "ci-npm-update",
     }).createPullRequest(pullRequestData);
 }).then((response) => {
     console.log("Successfully creqted a pull-request: %s", response.html_url);
