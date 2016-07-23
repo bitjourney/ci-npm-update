@@ -11,4 +11,7 @@ deployment:
   update-dependencies:
     branch: master
     commands:
-      - bin/ci-npm-update
+      - >
+        if [ -n "${NPM_UPDATE}" ] ; then
+          bin/ci-npm-update
+        fi
