@@ -2,9 +2,31 @@
 
 This command keeps npm dependencies up-to-date with CI.
 
-# Description
+# Usage
 
-TBD
+For CI:
+
+```
+# set the access token to make pull requests:
+export GITHUB_ACCESS_TOKEN=...
+
+# and later:
+ci-npm-update
+```
+
+For local use:
+
+```
+# envchain is recommended to save credentils locally
+envchain --set github GITHUB_ACCESS_TOKEN
+
+# and later
+envchain github ci-npm-update
+```
+
+# See Also
+
+* [ci-bundle-update](https://github.com/masutaka/ci-bundle-update) for Ruby
 
 # License
 
