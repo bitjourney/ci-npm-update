@@ -6,3 +6,9 @@ dependencies:
   pre:
     - npm run setup
     - npm run build
+
+deployment:
+  update-dependencies:
+    branch: master
+    commands:
+      - bin/ci-npm-update
