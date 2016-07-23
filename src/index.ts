@@ -27,9 +27,19 @@ export class AllDependenciesAreUpToDate { }
 
 export type Options = {
     githubAccessToken: string,
+    gitUserName: string,
+    gitUserEmail: string,
 }
 
-export function start({githubAccessToken: githubAccessToken}: Options): Promise<string> {
+export function start({
+    githubAccessToken: githubAccessToken,
+    gitUserName: gitUserName,
+    gitUserEmail: gitUserEmail,
+}: Options): Promise<string> {
+    console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
+    console.assert(gitUserName, "Missing GIT_USER_NAME or --git-user-name");
+    console.assert(gitUserEmail, "Missing GIT_USER_EMAIL or --git-user-email");
+
     return ShrinkWrap.read().then((shrinkWrap) => {
         return shrinkWrap.getLatest();
     }).then((packageInfoList) => {
@@ -55,7 +65,7 @@ export function start({githubAccessToken: githubAccessToken}: Options): Promise<
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
         }).then((_result) => {
-            return run("git commmit -m 'npm update --depth 9999'");
+            return run(`git commmit -m 'npm update --depth 9999' --author '"${gitUserName}" <${gitUserEmail}>'`);
         }).then((_result) => {
             return run("git push origin HEAD");
         }).then((_result) => {

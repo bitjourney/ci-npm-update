@@ -24,6 +24,20 @@ envchain --set github GITHUB_ACCESS_TOKEN
 envchain github ci-npm-update
 ```
 
+# Development
+
+Setup:
+
+```
+npm run setup
+```
+
+Easy test command:
+
+```
+npm run build && envchain github node bin/ci-npm-update --user-name "`git config user.name`" --user-email "`git config user.email`"
+```
+
 # See Also
 
 * [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr)
