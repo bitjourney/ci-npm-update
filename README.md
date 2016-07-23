@@ -26,7 +26,7 @@ envchain github ci-npm-update
 
 # See Also
 
-* [ci-bundle-update](https://github.com/masutaka/ci-bundle-update) for Ruby
+* [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr)
 
 # License
 
