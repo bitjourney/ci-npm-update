@@ -1,6 +1,6 @@
 import { ShrinkWrap } from "./shrink_wrap";
 import * as Issue from "./issue";
-import { GitHubApi, GitHubPullRequestParameters } from "./github";
+import * as github from "./github";
 import { exec } from "child_process";
 import * as moment from "moment";
 
@@ -23,18 +23,24 @@ function run(command: string): Promise<string> {
     });
 }
 
-export class AllDependenciesAreUpToDate { }
+export abstract class SkipRemainingTasks { }
+
+export class AllDependenciesAreUpToDate extends SkipRemainingTasks { }
+
+export class SkipToCreatePullRequest extends SkipRemainingTasks { }
 
 export type Options = {
     githubAccessToken: string,
     gitUserName: string,
     gitUserEmail: string,
+    execute: boolean, // default to dry-run mode
 }
 
 export function start({
     githubAccessToken: githubAccessToken,
     gitUserName: gitUserName,
     gitUserEmail: gitUserEmail,
+    execute: execute,
 }: Options): Promise<string> {
     console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
     console.assert(gitUserName, "Missing GIT_USER_NAME or --git-user-name");
@@ -65,7 +71,7 @@ export function start({
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
         }).then((_result) => {
-            return run(`git commmit -m 'npm update --depth 9999' --author '"${gitUserName}" <${gitUserEmail}>'`);
+            return run(`git commit -m 'npm update --depth 9999' --author '"${gitUserName}" <${gitUserEmail}>'`);
         }).then((_result) => {
             return run("git push origin HEAD");
         }).then((_result) => {
@@ -83,8 +89,12 @@ export function start({
                 }),
             ]);
         });
-    }).then(([repositoryUrl, pullRequestData]: [string, GitHubPullRequestParameters]) => {
-        return new GitHubApi({
+    }).then(([repositoryUrl, pullRequestData]: [string, github.GitHubPullRequestParameters]) => {
+        if (!execute) {
+            return <Promise<github.GitHubPullRequestResponse>>Promise.reject(new SkipToCreatePullRequest());
+        }
+
+        return new github.GitHubApi({
             repositoryUrl: repositoryUrl,
             token: githubAccessToken,
         }).createPullRequest(pullRequestData);

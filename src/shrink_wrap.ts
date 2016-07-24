@@ -43,24 +43,44 @@ export class ShrinkWrap {
     }
 
     getDependencyVersionRange(name: string): string {
-        return (<any>this.dependencies)[name].from.split(/@/)[1];
+        const parts = (<any>this.dependencies)[name].from.split(/@/);
+        return parts[parts.length - 1];
     }
 
     getLatest(): Promise<PackageInfo[]> {
         return Promise.all(this.getDependencyNames().map((name) => {
+            console.assert(name, "Missing library name");
+
             const version = this.getDependencyVersion(name);
             const versionRange = this.getDependencyVersionRange(name);
 
             console.time(`${name}@${version}`);
             return new Promise<PackageInfo>((resolve, reject) => {
-                request(`${REGISTRY_ENDPOINT}/${name}/${versionRange}`, (err, _res, body) => {
+                const url = `${REGISTRY_ENDPOINT}/${name}/${versionRange}`;
+                request(url, (err, res, body) => {
                     if (err) {
                         reject(err);
-                    } else {
-                        const npmConfig = new NpmConfig(JSON.parse(body));
-                        console.timeEnd(`${name}@${version}`);
-                        resolve(new PackageInfo(version, npmConfig));
+                        return;
                     }
+                    let json: any;
+                    try {
+                         json = JSON.parse(body);
+                    } catch (e) {
+                        // ignore errors
+                        const error = `Failed to get npm config from ${url}: ${res.statusCode} ${res.statusMessage}`;
+                        resolve(new PackageInfo(version, new NpmConfig({name: name, version: version, error: error})));
+                        return;
+                    }
+                    if (json.error) {
+                        // ignore errors
+                        const error = `Failed to get npm config from ${url}: ${json.error}`;
+                        resolve(new PackageInfo(version, new NpmConfig({name: name, version: version, error: error})));
+                        return;
+                    }
+
+                    const npmConfig = new NpmConfig(json);
+                    console.timeEnd(`${name}@${version}`);
+                    resolve(new PackageInfo(version, npmConfig));
                 });
             });
         }));

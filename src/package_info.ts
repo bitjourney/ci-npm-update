@@ -20,6 +20,9 @@ export class PackageInfo {
     repositoryUrl: string;
 
     constructor(installedVersion: string, npmConfig: NpmConfig) {
+        console.assert(installedVersion != null, `installedVersion is not defined for ${npmConfig.name}`);
+        console.assert(npmConfig.version != null, `npmConfig.version is not defined for ${npmConfig.name}`);
+
         this.name = npmConfig.name;
         this.installedVersion = installedVersion;
         this.latestVersion = npmConfig.version;

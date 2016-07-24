@@ -10,6 +10,7 @@ const options: main.Options = {
     githubAccessToken: process.env.GITHUB_ACCESS_TOKEN,
     gitUserName: process.env.GIT_USER_NAME,
     gitUserEmail: process.env.GIT_USER_EMAIL,
+    execute: false,
 };
 
 const args = process.argv.splice(2);
@@ -30,6 +31,8 @@ for (let i = 0; i < args.length; i++) {
             die(`No value for ${arg}`);
         }
         options.gitUserEmail = args[i];
+    } else if (arg === "--execute") {
+        options.execute = true;
     } else {
         die(`Unknown option: ${arg}`);
     }
@@ -51,7 +54,10 @@ main.start(options).then((pullRequestUrl) => {
     if (reason instanceof main.AllDependenciesAreUpToDate) {
         console.log("All the dependencies are up to date.");
         return;
+    } else if (reason instanceof main.SkipToCreatePullRequest) {
+        console.log("Skiped to create a pull-request because --execute is not specified.");
+        return;
     }
-    // unexpected reasons are exceptions
-    throw reason;
+    console.error(`Unexpected errors caught: ${reason.stack}`);
+    process.exit(1);
 });
