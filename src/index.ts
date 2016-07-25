@@ -83,9 +83,16 @@ export function start({
                 return Promise.resolve();
             }
         }).then((_result) => {
+            return run("git diff --cached"); // just for logging
+        }).then((_result) => {
             return run(`git commit -m 'npm update --depth 9999'`);
         }).then((_result) => {
-            return run("git push origin HEAD");
+            if (execute) {
+                return run("git push origin HEAD");
+            } else {
+                console.log("Skipped `git push` because --execute is not specified.")
+                return Promise.resolve();
+            }
         }).then((_result) => {
             return run("git checkout -");
         }).then((_result) => {
