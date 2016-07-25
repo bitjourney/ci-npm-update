@@ -60,7 +60,7 @@ export function start({
 
         const issue = Issue.create(outdatedList);
         console.log(issue);
-        const timestamp = moment().format("YYYY-MM-DD-hh-mm-ss");
+        const timestamp = moment().format("YYYYMMDDhhmmss");
 
         const branch = `npm-update/${timestamp}`;
 
