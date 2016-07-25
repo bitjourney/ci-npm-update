@@ -1,0 +1,31 @@
+{
+    "name": "Circle CI nightly build trigger",
+    "description": "Heroku app to trigger nightly build on Circle CI",
+    "keywords": [
+        "CircleCI",
+        "GitHub"
+    ],
+    "env": {
+        "PROJECT": {
+            "description": "GitHub repository to build, e.g. gfx/ci-npm-update"
+        },
+        "BRANCH": {
+            "description": "Git branch to build",
+            "value": "master"
+        },
+        "CIRCLECI_TOKEN": {
+            "description": "CircleCI: Project Setting -> API Permissions"
+        },
+        "TZ": {
+            "description": "TimeZone for the app",
+            "value": "Asia/Tokyo",
+            "required": false
+        },
+        "TRIGGER_NAME": {
+            "value": "NPM_UPDATE"
+        }
+    },
+    "addons": [
+        "scheduler:standard"
+    ]
+}

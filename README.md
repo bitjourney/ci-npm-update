@@ -38,6 +38,10 @@ Easy test command in dry-run mode:
 npm run build && envchain github node bin/ci-npm-update
 ```
 
+## Execute on Heroku Scheduler
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 # See Also
 
 * [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr)
