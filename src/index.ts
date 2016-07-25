@@ -42,9 +42,9 @@ export function start({
     gitUserEmail: gitUserEmail,
     execute: execute,
 }: Options): Promise<string> {
-    console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
-    console.assert(gitUserName, "Missing GIT_USER_NAME or --git-user-name");
-    console.assert(gitUserEmail, "Missing GIT_USER_EMAIL or --git-user-email");
+    if (execute) {
+        console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
+    }
 
     return ShrinkWrap.read().then((shrinkWrap) => {
         return shrinkWrap.getLatest();
@@ -71,9 +71,28 @@ export function start({
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
         }).then((_result) => {
-            return run(`git commit -m 'npm update --depth 9999' --author '"${gitUserName}" <${gitUserEmail}>'`);
+            if (gitUserName) {
+                return run(`git config user.name '${gitUserName}'`);
+            } else {
+                return Promise.resolve();
+            }
         }).then((_result) => {
-            return run("git push origin HEAD");
+            if (gitUserEmail) {
+                return run(`git config user.email '${gitUserEmail}'`);
+            } else {
+                return Promise.resolve();
+            }
+        }).then((_result) => {
+            return run("git diff --cached"); // just for logging
+        }).then((_result) => {
+            return run(`git commit -m 'npm update --depth 9999'`);
+        }).then((_result) => {
+            if (execute) {
+                return run("git push origin HEAD");
+            } else {
+                console.log("Skipped `git push` because --execute is not specified.");
+                return Promise.resolve();
+            }
         }).then((_result) => {
             return run("git checkout -");
         }).then((_result) => {
