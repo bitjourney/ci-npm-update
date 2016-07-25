@@ -71,13 +71,13 @@ export function start({
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
         }).then((_result) => {
-            if (gitUserName !== "") {
+            if (gitUserName) {
                 return run(`git config user.name '${gitUserName}'`);
             } else {
                 return Promise.resolve();
             }
         }).then((_result) => {
-            if (gitUserEmail !== "") {
+            if (gitUserEmail) {
                 return run(`git config user.email '${gitUserEmail}'`);
             } else {
                 return Promise.resolve();
@@ -90,7 +90,7 @@ export function start({
             if (execute) {
                 return run("git push origin HEAD");
             } else {
-                console.log("Skipped `git push` because --execute is not specified.")
+                console.log("Skipped `git push` because --execute is not specified.");
                 return Promise.resolve();
             }
         }).then((_result) => {
