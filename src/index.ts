@@ -42,9 +42,9 @@ export function start({
     gitUserEmail: gitUserEmail,
     execute: execute,
 }: Options): Promise<string> {
-    console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
-    console.assert(gitUserName, "Missing GIT_USER_NAME or --git-user-name");
-    console.assert(gitUserEmail, "Missing GIT_USER_EMAIL or --git-user-email");
+    if (execute) {
+        console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
+    }
 
     return ShrinkWrap.read().then((shrinkWrap) => {
         return shrinkWrap.getLatest();
@@ -71,7 +71,19 @@ export function start({
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
         }).then((_result) => {
-            return run(`git commit -m 'npm update --depth 9999' --author '"${gitUserName}" <${gitUserEmail}>'`);
+            if (gitUserName !== "") {
+                return run(`git config user.name '${gitUserName}'`);
+            } else {
+                return Promise.resolve();
+            }
+        }).then((_result) => {
+            if (gitUserEmail !== "") {
+                return run(`git config user.email '${gitUserEmail}'`);
+            } else {
+                return Promise.resolve();
+            }
+        }).then((_result) => {
+            return run(`git commit -m 'npm update --depth 9999'`);
         }).then((_result) => {
             return run("git push origin HEAD");
         }).then((_result) => {

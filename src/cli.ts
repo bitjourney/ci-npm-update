@@ -38,15 +38,6 @@ for (let i = 0; i < args.length; i++) {
     }
 }
 
-const missingArgs = <string[]>[];
-if (!options.githubAccessToken) {
-    missingArgs.push("GITHUB_ACCESS_TOKEN (or --token)");
-}
-
-if (missingArgs.length > 0) {
-    die(`Missing arguments:${missingArgs.join(", ")}`);
-}
-
 main.start(options).then((pullRequestUrl) => {
     console.log("Successfully creqted a pull-request: %s", pullRequestUrl);
 }).catch((reason) => {
