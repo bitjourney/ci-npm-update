@@ -11,7 +11,7 @@ For CI:
 export GITHUB_ACCESS_TOKEN=...
 
 # and later:
-ci-npm-update
+ci-npm-update --execute
 ```
 
 For local use:
@@ -21,7 +21,7 @@ For local use:
 envchain --set github GITHUB_ACCESS_TOKEN
 
 # and later
-envchain github ci-npm-update
+envchain github ci-npm-update --execute
 ```
 
 # Development
@@ -32,10 +32,10 @@ Setup:
 npm run setup
 ```
 
-Easy test command:
+Easy test command in dry-run mode:
 
 ```
-npm run build && envchain github node bin/ci-npm-update --user-name "`git config user.name`" --user-email "`git config user.email`"
+npm run build && envchain github node bin/ci-npm-update
 ```
 
 # See Also
