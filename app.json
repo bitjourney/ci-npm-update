@@ -14,7 +14,7 @@
             "value": "master"
         },
         "CIRCLECI_TOKEN": {
-            "description": "CircleCI: Project Setting -> API Permissions"
+            "description": "CircleCI: Project Settings -> API Permissions -> Create a token with 'All' scope"
         },
         "TZ": {
             "description": "TimeZone for the app",
