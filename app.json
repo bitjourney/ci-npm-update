@@ -1,6 +1,6 @@
 {
-    "name": "Circle CI nightly build trigger",
-    "description": "Heroku app to trigger nightly build on Circle CI",
+    "name": "Circle CI nightly builder",
+    "description": "Heroku app to trigger Circle CI build to create maintenance pull requests",
     "keywords": [
         "CircleCI",
         "GitHub"
