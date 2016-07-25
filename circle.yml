@@ -6,6 +6,8 @@ dependencies:
   pre:
     - npm run setup
     - npm run build
+  post:
+    - bin/ci-npm-update
 
 deployment:
   update-dependencies:
@@ -13,5 +15,5 @@ deployment:
     commands:
       - >
         if [ -n "${NPM_UPDATE}" ] ; then
-          bin/ci-npm-update
+          bin/ci-npm-update --execute
         fi
