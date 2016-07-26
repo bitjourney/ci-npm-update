@@ -106,7 +106,7 @@ export function start({
                     title: `npm update at ${new Date()}`,
                     body: issue,
                     head: branch,
-                    base: baseBranch,
+                    base: baseBranch.trim(),
                 }),
             ]);
         });
@@ -116,7 +116,7 @@ export function start({
         }
 
         return new github.GitHubApi({
-            repositoryUrl: repositoryUrl,
+            repositoryUrl: repositoryUrl.trim(),
             token: githubAccessToken,
         }).createPullRequest(pullRequestData);
     }).then((response) => {
