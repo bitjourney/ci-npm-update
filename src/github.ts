@@ -80,7 +80,7 @@ export class GitHubApi {
                     if (err) {
                         reject(err);
                     } else if (body.errors || !body.html_url) {
-                        reject(new Error(`Failed to create a pull request: ${JSON.stringify(body)}`))
+                        reject(new Error(`Failed to create a pull request: ${JSON.stringify(body)}`));
                     } else {
                         resolve(body);
                     }
