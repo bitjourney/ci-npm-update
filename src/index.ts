@@ -67,6 +67,8 @@ export function start({
         return run(`git checkout -b ${branch}`).then((_result) => {
             return run("npm update --depth 9999");
         }).then((_result) => {
+            return run("npm prune");
+        }).then((_result) => {
             return run("npm shrinkwrap");
         }).then((_result) => {
             return run("git add npm-shrinkwrap.json");
