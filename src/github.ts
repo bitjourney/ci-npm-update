@@ -79,8 +79,8 @@ export class GitHubApi {
                 (err, _response, body) => {
                     if (err) {
                         reject(err);
-                    } else if (body.errors) {
-                        reject(new Error(`${body.message}: ${JSON.stringify(body.errors)}`));
+                    } else if (body.errors || !body.html_url) {
+                        reject(new Error(`Failed to create a pull request: ${JSON.stringify(body)}`))
                     } else {
                         resolve(body);
                     }
