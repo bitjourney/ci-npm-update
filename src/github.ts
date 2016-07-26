@@ -17,8 +17,8 @@ export type GitHubPullRequestParameters = {
 
 export class GitHubApi {
 
-    static parseUrl(url: string): {host: string, owner: string, repository: string} {
-        const matched =  /^(?:git@|(?:git\+)?https:\/\/)([^\/:]+)[\/:]([^\/]+)\/([^\/]+)(?!\.git)/.exec(url);
+    static parseUrl(url: string): { host: string, owner: string, repository: string } {
+        const matched = /^(?:git@|(?:git\+)?https:\/\/)([^\/:]+)[\/:]([^\/]+)\/([^\/]+)(?!\.git)/.exec(url);
         if (!matched) {
             throw Error(`Cannot parse git repository URL: ${url}`);
         }
@@ -63,7 +63,8 @@ export class GitHubApi {
     createPullRequest(parameters: GitHubPullRequestParameters): Promise<GitHubPullRequestResponse> {
         return new Promise<GitHubPullRequestResponse>((resolve, reject) => {
             // https://developer.github.com/v3/pulls/#create-a-pull-request
-            request.post(`${this.endpoint}/repos/${this.owner}/${this.repository}/pulls`,
+            const url = `${this.endpoint}/repos/${this.owner}/${this.repository}/pulls`;
+            request.post(url,
                 {
                     headers: {
                         "user-agent": USER_AGENT,
@@ -80,7 +81,7 @@ export class GitHubApi {
                     if (err) {
                         reject(err);
                     } else if (body.errors || !body.html_url) {
-                        reject(new Error(`Failed to create a pull request: ${JSON.stringify(body)}`));
+                        reject(new Error(`Failed to create a pull request (${url}): ${JSON.stringify(body)}`));
                     } else {
                         resolve(body);
                     }
