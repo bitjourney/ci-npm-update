@@ -7,7 +7,7 @@
 #
 # see app.json for details.
 
-if [ -z "$CIRCLE_CITOKEN" ] ; then
+if [ -z "$CIRCLECI_TOKEN" ] ; then
     echo No CIRCLECI_TOKEN is set.
     exit
 fi
