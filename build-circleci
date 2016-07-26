@@ -19,6 +19,6 @@ payload="{ \"build_parameters\": { \"${TRIGGER_NAME}\": \"true\" } }"
 curl \
   --header "Accept: application/json" \
   --header "Content-Type: application/json" \
-  --header "User-Agent: build-circleci/1.0"
+  --header "User-Agent: build-circleci/1.0" \
   --data "${payload}" \
   --request POST ${trigger_build_url}
