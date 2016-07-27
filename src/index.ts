@@ -102,14 +102,15 @@ export function start({
         console.log(issue);
         console.log("");
 
-        return new Promise<string>(() => {
-            if (execute) {
-                return run(`git push origin ${branch}`);
-            } else {
-                console.log("Skipped `git push` because --execute is not specified.");
-                return Promise.resolve();
-            }
-        }).then((_result) => {
+        let gitPushPromise: Promise<void>;
+        if (execute) {
+            gitPushPromise = run(`git push origin ${branch}`);
+        } else {
+            console.log("Skipped `git push` because --execute is not specified.");
+            gitPushPromise = Promise.resolve();
+        }
+
+        return gitPushPromise.then((_result) => {
             return run("git rev-parse --abbrev-ref HEAD");
         }).then((baseBranch) => {
             return Promise.all([
