@@ -1,0 +1,28 @@
+.git/
+
+# for editor settings
+.idea/
+.vscode
+
+# for npm
+node_modules/
+npm-shrinkwrap.json
+
+# for typings
+typings/
+
+# Don't include ts files
+# for https://github.com/Microsoft/TypeScript/issues/4667
+src/
+
+# tests
+test/
+
+# Heroku
+build-circleci
+app.json
+
+# misc
+circle.yml
+tslint.json
+npm-debug.log

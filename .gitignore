@@ -6,4 +6,4 @@ typings/
 *.build/
 lib/
 .vscode/*.db
-.vscode/*.db-wal
+.vscode/*.db-*
