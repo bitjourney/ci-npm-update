@@ -1,4 +1,3 @@
-import * as semver from "semver";
 import { NpmConfig } from "./npm_config";
 
 export class PackageInfo {
@@ -19,22 +18,23 @@ export class PackageInfo {
 
     repositoryUrl: string;
 
-    constructor(installedVersion: string, npmConfig: NpmConfig) {
-        console.assert(installedVersion != null, `installedVersion is not defined for ${npmConfig.name}`);
-        console.assert(npmConfig.version != null, `npmConfig.version is not defined for ${npmConfig.name}`);
-
+    constructor(installedVersion: string, latestVersion: string, npmConfig: NpmConfig) {
         this.name = npmConfig.name;
         this.installedVersion = installedVersion;
-        this.latestVersion = npmConfig.version;
+        this.latestVersion = latestVersion;
         this.repositoryUrl = PackageInfo.fixupUrl(npmConfig.repository);
-    }
-
-    isOutdated(): boolean {
-        return semver.compare(this.installedVersion, this.latestVersion) < 0;
     }
 
     hasRepositoryUrl(): boolean {
         return this.repositoryUrl ? true : false;
+    }
+
+    getRepositoryUrl(): string {
+        return this.repositoryUrl;
+    }
+
+    hasDiffUrl(): boolean {
+        return (this.installedVersion && this.latestVersion) ? true : false;
     }
 
     getVersionRange(): string {
@@ -43,5 +43,9 @@ export class PackageInfo {
 
     getDiffUrl(): string {
         return `${this.repositoryUrl}/compare/${this.getVersionRange()}`;
+    }
+
+    toPromise(): Promise<PackageInfo> {
+        return Promise.resolve(this);
     }
 }

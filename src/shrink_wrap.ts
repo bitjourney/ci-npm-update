@@ -1,11 +1,8 @@
 import * as fs from "fs";
-import * as request from "request";
-import { NpmConfig } from "./npm_config";
 import { PackageInfo } from "./package_info";
+import { NpmConfig } from "./npm_config";
 
-const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
-
-type ShrinkWrapData = {
+export type ShrinkWrapData = {
     version: string;
     from: string;
     resolved: string;
@@ -38,51 +35,61 @@ export class ShrinkWrap {
         return Object.keys(this.dependencies);
     }
 
+    getDependencyData(name: string): ShrinkWrapData {
+        return (<any>this.dependencies)[name];
+    }
+
     getDependencyVersion(name: string): string {
-        return (<any>this.dependencies)[name].version;
+        return this.getDependencyData(name).version;
     }
 
     getDependencyVersionRange(name: string): string {
-        const parts = (<any>this.dependencies)[name].from.split(/@/);
+        const parts = this.getDependencyData(name).from.split(/@/);
         return parts[parts.length - 1];
     }
 
-    getLatest(): Promise<PackageInfo[]> {
-        return Promise.all(this.getDependencyNames().map((name) => {
-            console.assert(name, "Missing library name");
+    diff(other: ShrinkWrap): Promise<ShrinkWrapDiff> {
+        return Promise.resolve(new ShrinkWrapDiff(this, other));
+    }
+}
 
-            const version = this.getDependencyVersion(name);
-            const versionRange = this.getDependencyVersionRange(name);
+export class ShrinkWrapDiff {
+    older: ShrinkWrap;
+    newer: ShrinkWrap;
 
-            console.time(`${name}@${version}`);
-            return new Promise<PackageInfo>((resolve, reject) => {
-                const url = `${REGISTRY_ENDPOINT}/${name}/${versionRange}`;
-                request(url, (err, res, body) => {
-                    if (err) {
-                        reject(err);
-                        return;
-                    }
-                    let json: any;
-                    try {
-                         json = JSON.parse(body);
-                    } catch (e) {
-                        // ignore errors
-                        const error = `Failed to get npm config from ${url}: ${res.statusCode} ${res.statusMessage}`;
-                        resolve(new PackageInfo(version, new NpmConfig({name: name, version: version, error: error})));
-                        return;
-                    }
-                    if (json.error) {
-                        // ignore errors
-                        const error = `Failed to get npm config from ${url}: ${json.error}`;
-                        resolve(new PackageInfo(version, new NpmConfig({name: name, version: version, error: error})));
-                        return;
-                    }
+    constructor(older: ShrinkWrap, newer: ShrinkWrap) {
+        this.older = older;
+        this.newer = newer;
+    }
 
-                    const npmConfig = new NpmConfig(json);
-                    console.timeEnd(`${name}@${version}`);
-                    resolve(new PackageInfo(version, npmConfig));
-                });
-            });
-        }));
+    hasNoDiff(): boolean {
+        return JSON.stringify(this.older) === JSON.stringify(this.newer);
+    }
+
+    getPackageInfoList(): Promise<PackageInfo[]> {
+        const older = this.older;
+        const newer = this.newer;
+        const union = new Set([
+            ...older.getDependencyNames(),
+            ...newer.getDependencyNames(),
+        ]);
+
+        const result: Promise<PackageInfo>[] = [];
+        union.forEach((name) => {
+            const olderOne = older.getDependencyData(name);
+            const newerOne = newer.getDependencyData(name);
+
+            if (olderOne && newerOne && olderOne.version === newerOne.version) {
+                // no change
+                return;
+            }
+            result.push(NpmConfig.getFromRegistry(name, newerOne.version)
+                .then((npmConfig) => {
+                    const olderVersion = olderOne ? olderOne.version : null;
+                    const newerVersion = newerOne ? newerOne.version : null;
+                    return new PackageInfo(olderVersion, newerVersion, npmConfig).toPromise();
+                }));
+        });
+        return Promise.all(result);
     }
 }

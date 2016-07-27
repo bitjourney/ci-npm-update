@@ -1,5 +1,5 @@
 import * as assert from "power-assert";
-import { GitHubApi } from "../lib/github";
+import { GitHubApi } from "../src/github";
 
 const githubDataSet = {
     "github ssh url": "git@github.com:foo/something.useful.git",

@@ -36,6 +36,39 @@ export type Options = {
     execute: boolean, // default to dry-run mode
 }
 
+export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promise<void> {
+    const setUserNamePromise = gitUserName ? run(`git config user.name '${gitUserName}'`) : Promise.resolve();
+    const setUserEmailPromise = gitUserEmail ? run(`git config user.email '${gitUserEmail}'`) : Promise.resolve();
+    return Promise.all([setUserNamePromise, setUserEmailPromise]);
+}
+
+export function createGitBranch(branch: string): Promise<ShrinkWrap> {
+    console.log(`Creating a branch: ${branch}`);
+
+    return run(`git checkout -b ${branch}`).then(() => {
+        return run("npm update --depth 9999");
+    }).then(() => {
+        return run("npm prune");
+    }).then(() => {
+        return run("npm shrinkwrap");
+    }).then(() => {
+        return run("git add npm-shrinkwrap.json");
+    }).then(() => {
+        return run("git diff --cached"); // just for logging
+    }).then(() => {
+        return run(`git commit -m 'npm update --depth 9999 && npm prune && npm shrinkwrap'`);
+    }).then(() => {
+        return ShrinkWrap.read();
+    }).then((shrinkWrap) => {
+        return Promise.all([
+            Promise.resolve(shrinkWrap),
+            run("git checkout -"),
+        ]);
+    }).then(([shrinkWrap]) => {
+        return Promise.resolve(shrinkWrap);
+    });
+}
+
 export function start({
     githubAccessToken: githubAccessToken,
     gitUserName: gitUserName,
@@ -46,57 +79,36 @@ export function start({
         console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
     }
 
-    return ShrinkWrap.read().then((shrinkWrap) => {
-        return shrinkWrap.getLatest();
-    }).then((packageInfoList) => {
-        const outdatedList = packageInfoList.filter((packageInfo) => {
-            return packageInfo.isOutdated();
-        });
+    const timestamp = moment().format("YYYYMMDDhhmmss");
+    const branch = `npm-update/${timestamp}`;
 
-        if (outdatedList.length === 0) {
+    return setupGitConfig(gitUserName, gitUserEmail).then(() => {
+        return ShrinkWrap.read();
+    }).then((shrinkWrap) => {
+        return Promise.all([
+            Promise.resolve(shrinkWrap),
+            createGitBranch(branch),
+        ]);
+    }).then(([current, updated]) => {
+        return current.diff(updated);
+    }).then((shrinkWrapDiff) => {
+        if (shrinkWrapDiff.hasNoDiff()) {
             return Promise.reject(new AllDependenciesAreUpToDate());
         }
+
+        return shrinkWrapDiff.getPackageInfoList();
+    }).then((packageInfoList) => {
+        const issue = Issue.createBody(packageInfoList);
+        console.log(issue);
         console.log("");
 
-        const issue = Issue.create(outdatedList);
-        console.log(issue);
-        const timestamp = moment().format("YYYYMMDDhhmmss");
-
-        const branch = `npm-update/${timestamp}`;
-
-        return run(`git checkout -b ${branch}`).then((_result) => {
-            return run("npm update --depth 9999");
-        }).then((_result) => {
-            return run("npm prune");
-        }).then((_result) => {
-            return run("npm shrinkwrap");
-        }).then((_result) => {
-            return run("git add npm-shrinkwrap.json");
-        }).then((_result) => {
-            if (gitUserName) {
-                return run(`git config user.name '${gitUserName}'`);
-            } else {
-                return Promise.resolve();
-            }
-        }).then((_result) => {
-            if (gitUserEmail) {
-                return run(`git config user.email '${gitUserEmail}'`);
-            } else {
-                return Promise.resolve();
-            }
-        }).then((_result) => {
-            return run("git diff --cached"); // just for logging
-        }).then((_result) => {
-            return run(`git commit -m 'npm update --depth 9999'`);
-        }).then((_result) => {
+        return new Promise<string>(() => {
             if (execute) {
-                return run("git push origin HEAD");
+                return run(`git push origin ${branch}`);
             } else {
                 console.log("Skipped `git push` because --execute is not specified.");
                 return Promise.resolve();
             }
-        }).then((_result) => {
-            return run("git checkout -");
         }).then((_result) => {
             return run("git rev-parse --abbrev-ref HEAD");
         }).then((baseBranch) => {
