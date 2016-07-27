@@ -5,3 +5,5 @@ node_modules/
 typings/
 *.build/
 lib/
+.vscode/*.db
+.vscode/*.db-wal
