@@ -79,6 +79,11 @@ export class ShrinkWrapDiff {
             const olderOne = older.getDependencyData(name);
             const newerOne = newer.getDependencyData(name);
 
+            if (olderOne && !newerOne) {
+                // removed
+                return;
+            }
+
             if (olderOne && newerOne && olderOne.version === newerOne.version) {
                 // no change
                 return;
