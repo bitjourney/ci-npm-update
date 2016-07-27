@@ -48,7 +48,7 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
     return run(`git checkout -b ${branch}`).then(() => {
         // npm update --depth 9999 might cause OOM:
         // https://github.com/npm/npm/issues/11876
-        return run("mv node_modules node_modules~ ; npm install");
+        return run("rm -rf node_modules npm-shrinkwrap.json ; npm install");
     }).then(() => {
         return run("npm shrinkwrap");
     }).then(() => {
