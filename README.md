@@ -7,8 +7,10 @@ This command keeps npm dependencies up-to-date with CI.
 For CI:
 
 ```
-# set the access token to make pull requests:
+# setup env vars in the CI dashboard:
 export GITHUB_ACCESS_TOKEN=...
+export GIT_USER_NAME=gfx
+export GIT_USER_EMAIL=gfx@users.noreply.github.com
 
 # and later:
 ci-npm-update --execute
@@ -20,7 +22,10 @@ For local use:
 # envchain is recommended to save credentils locally
 envchain --set github GITHUB_ACCESS_TOKEN
 
-# and later
+# run in dry-run mode:
+envchain github ci-npm-update
+
+# run:
 envchain github ci-npm-update --execute
 ```
 
@@ -38,9 +43,11 @@ Easy test command in dry-run mode:
 npm run build && envchain github node bin/ci-npm-update
 ```
 
-## Execute on Heroku Scheduler
+## Heroku Scheduler
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+If you want to setup heroku schedulers, there's a template for it:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gfx/ci-npm-update)
 
 # See Also
 
