@@ -46,9 +46,9 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
     console.log(`Creating a branch: ${branch}`);
 
     return run(`git checkout -b ${branch}`).then(() => {
-        return run("npm update --depth 9999");
-    }).then(() => {
-        return run("npm prune");
+        // npm update --depth 9999 might cause OOM:
+        // https://github.com/npm/npm/issues/11876
+        return run("mv node_modules ; npm install");
     }).then(() => {
         return run("npm shrinkwrap");
     }).then(() => {
@@ -57,7 +57,7 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
         return run("git diff --cached");
     }).then((diff) => {
         if (diff.trim()) {
-            return run(`git commit -m 'npm update --depth 9999 && npm prune && npm shrinkwrap'`);
+            return run(`git commit -m 'update npm dependencies'`);
         } else {
             return run("git checkout -").then(() => {
                 return Promise.reject(new AllDependenciesAreUpToDate());
