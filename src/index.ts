@@ -54,9 +54,15 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
     }).then(() => {
         return run("git add npm-shrinkwrap.json");
     }).then(() => {
-        return run("git diff --cached"); // just for logging
-    }).then(() => {
-        return run(`git commit -m 'npm update --depth 9999 && npm prune && npm shrinkwrap'`);
+        return run("git diff --cached");
+    }).then((diff) => {
+        if (diff.trim()) {
+            return run(`git commit -m 'npm update --depth 9999 && npm prune && npm shrinkwrap'`);
+        } else {
+            return run("git checkout -").then(() => {
+                return Promise.reject(new AllDependenciesAreUpToDate());
+            });
+        }
     }).then(() => {
         return ShrinkWrap.read();
     }).then((shrinkWrap) => {
@@ -92,10 +98,6 @@ export function start({
     }).then(([current, updated]) => {
         return current.diff(updated);
     }).then((shrinkWrapDiff) => {
-        if (shrinkWrapDiff.hasNoDiff()) {
-            return Promise.reject(new AllDependenciesAreUpToDate());
-        }
-
         return shrinkWrapDiff.getPackageInfoList();
     }).then((packageInfoList) => {
         const issue = Issue.createBody(packageInfoList);
