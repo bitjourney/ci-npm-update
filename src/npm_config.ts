@@ -4,12 +4,16 @@ const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
 
 export class NpmConfig {
 
-    static getFromRegistry(name: string, versionSpec: string): Promise<NpmConfig> {
-        return new Promise<NpmConfig>((resolve, reject) => {
-            const url = `${REGISTRY_ENDPOINT}/${name}/${versionSpec}`;
+    static getFromRegistry(name: string, version: string): Promise<NpmConfig> {
+        return new Promise<NpmConfig>((resolve, _reject) => {
+            const url = `${REGISTRY_ENDPOINT}/x/${name}/${version}`;
             request(url, (err, res, body) => {
                 if (err) {
-                    reject(err);
+                    resolve(new NpmConfig({
+                        name: name,
+                        version: version,
+                        error: err,
+                    }));
                     return;
                 }
                 let json: any;
@@ -17,12 +21,20 @@ export class NpmConfig {
                     json = JSON.parse(body);
                 } catch (e) {
                     const error = `Failed to get npm config from ${url}: ${res.statusCode} ${res.statusMessage}`;
-                    reject(new Error(error));
+                    resolve(new NpmConfig({
+                        name: name,
+                        version: version,
+                        error: error,
+                    }));
                     return;
                 }
                 if (json.error) {
                     const error = `Failed to get npm config from ${url}: ${json.error}`;
-                    reject(new Error(error));
+                    resolve(new NpmConfig({
+                        name: name,
+                        version: version,
+                        error: error,
+                    }));
                     return;
                 }
                 resolve(new NpmConfig(json));
