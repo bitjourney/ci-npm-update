@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { PackageInfo } from "./package_info";
+import { GitHubCompareView } from "./compare_view";
 import { NpmConfig } from "./npm_config";
 
 export type ShrinkWrapData = {
@@ -66,7 +66,7 @@ export class ShrinkWrapDiff {
         return JSON.stringify(this.older) === JSON.stringify(this.newer);
     }
 
-    getPackageInfoList(): Promise<PackageInfo[]> {
+    getCompareViewList(): Promise<GitHubCompareView[]> {
         const older = this.older;
         const newer = this.newer;
         const union = new Set([
@@ -74,7 +74,7 @@ export class ShrinkWrapDiff {
             ...newer.getDependencyNames(),
         ]);
 
-        const result: Promise<PackageInfo>[] = [];
+        const result: Promise<GitHubCompareView>[] = [];
         union.forEach((name) => {
             const olderOne = older.getDependencyData(name);
             const newerOne = newer.getDependencyData(name);
@@ -92,7 +92,7 @@ export class ShrinkWrapDiff {
                 .then((npmConfig) => {
                     const olderVersion = olderOne ? olderOne.version : null;
                     const newerVersion = newerOne ? newerOne.version : null;
-                    return new PackageInfo(olderVersion, newerVersion, npmConfig).toPromise();
+                    return new GitHubCompareView(olderVersion, newerVersion, npmConfig).toPromise();
                 }));
         });
         return Promise.all(result);

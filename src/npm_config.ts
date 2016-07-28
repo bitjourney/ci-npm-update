@@ -6,7 +6,7 @@ export class NpmConfig {
 
     static getFromRegistry(name: string, version: string): Promise<NpmConfig> {
         return new Promise<NpmConfig>((resolve, _reject) => {
-            const url = `${REGISTRY_ENDPOINT}/x/${name}/${version}`;
+            const url = `${REGISTRY_ENDPOINT}/${name}/${version}`;
             request(url, (err, res, body) => {
                 if (err) {
                     resolve(new NpmConfig({

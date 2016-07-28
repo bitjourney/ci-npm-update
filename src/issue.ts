@@ -1,10 +1,10 @@
 // to file an issue from a package info list
 
-import { PackageInfo } from "./package_info";
+import { GitHubCompareView } from "./compare_view";
 
 const SIGNATURE = "[ci-npm-update](https://github.com/gfx/ci-npm-update)";
 
-export function createBody(list: PackageInfo[]): string {
+export function createBody(list: GitHubCompareView[]): string {
     let s = "## Updaing Dependencies\n\n";
     list.forEach((p) => {
         if (p.hasDiffUrl()) {
