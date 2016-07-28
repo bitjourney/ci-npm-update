@@ -1,6 +1,6 @@
 import { NpmConfig } from "./npm_config";
 
-export class PackageInfo {
+export class GitHubCompareView {
 
     static fixupUrl(repository: { url: string }): string {
         if (!(repository && repository.url)) {
@@ -22,7 +22,7 @@ export class PackageInfo {
         this.name = npmConfig.name;
         this.installedVersion = installedVersion;
         this.latestVersion = latestVersion;
-        this.repositoryUrl = PackageInfo.fixupUrl(npmConfig.repository);
+        this.repositoryUrl = GitHubCompareView.fixupUrl(npmConfig.repository);
     }
 
     hasRepositoryUrl(): boolean {
@@ -45,7 +45,7 @@ export class PackageInfo {
         return `${this.repositoryUrl}/compare/${this.getVersionRange()}`;
     }
 
-    toPromise(): Promise<PackageInfo> {
+    toPromise(): Promise<GitHubCompareView> {
         return Promise.resolve(this);
     }
 }

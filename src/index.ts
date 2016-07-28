@@ -98,9 +98,9 @@ export function start({
     }).then(([current, updated]) => {
         return current.diff(updated);
     }).then((shrinkWrapDiff) => {
-        return shrinkWrapDiff.getPackageInfoList();
-    }).then((packageInfoList) => {
-        const issue = Issue.createBody(packageInfoList);
+        return shrinkWrapDiff.getCompareViewList();
+    }).then((compareViewList) => {
+        const issue = Issue.createBody(compareViewList);
         console.log(issue);
         console.log("");
 
