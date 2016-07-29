@@ -1,6 +1,8 @@
 # ci-npm-update [![CircleCI](https://circleci.com/gh/gfx/ci-npm-update.svg?style=svg)](https://circleci.com/gh/gfx/ci-npm-update)
 
-This command keeps npm dependencies up-to-date with CI.
+This command keeps npm dependencies up-to-date, making pull-requests from CI.
+
+For example: https://github.com/gfx/ci-npm-update/pull/13
 
 # Usage
 
