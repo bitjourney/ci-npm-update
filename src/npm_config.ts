@@ -1,8 +1,21 @@
 import * as request from "request";
+import * as fs from "fs";
 
 const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
 
 export class NpmConfig {
+
+    static readFromFile(packageJsonFile: string = "package.json"): Promise<NpmConfig> {
+        return new Promise<NpmConfig>((resolve, reject) => {
+            fs.readFile(packageJsonFile, "utf8", (err, data) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(new NpmConfig(JSON.parse(data)));
+                }
+            });
+        });
+    }
 
     static getFromRegistry(name: string, version: string): Promise<NpmConfig> {
         return new Promise<NpmConfig>((resolve, _reject) => {
@@ -52,21 +65,21 @@ export class NpmConfig {
         url: string;
     };
 
-    dependencies: Map<string, string>;
-    devDependencies: Map<string, string>;
-    peerDependencies: Map<string, string>;
+    dependencies: {string: string};
+    devDependencies: {string: string};
+    peerDependencies: {string: string};
 
     constructor(json: any) {
         Object.assign(this, json);
 
         if (!this.dependencies) {
-            this.dependencies = new Map<string, string>();
+            this.dependencies = <{string: string}>{};
         }
         if (!this.devDependencies) {
-            this.devDependencies = new Map<string, string>();
+            this.devDependencies = <{string: string}>{};
         }
         if (!this.peerDependencies) {
-            this.peerDependencies = new Map<string, string>();
+            this.peerDependencies = <{string: string}>{};
         }
     }
 }

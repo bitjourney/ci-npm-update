@@ -1,4 +1,5 @@
 import { ShrinkWrap } from "./shrink_wrap";
+import { NpmConfig } from "./npm_config";
 import * as Issue from "./issue";
 import * as github from "./github";
 import { exec } from "child_process";
@@ -100,7 +101,8 @@ export function start({
     }).then((shrinkWrapDiff) => {
         return shrinkWrapDiff.getCompareViewList();
     }).then((compareViewList) => {
-        const issue = Issue.createBody(compareViewList);
+        return Issue.createBody(compareViewList, NpmConfig.readFromFile());
+    }).then((issue) => {
         console.log(issue);
         console.log("");
 
