@@ -51,7 +51,8 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
         // https://github.com/npm/npm/issues/11876
         return run("rm -rf node_modules npm-shrinkwrap.json ; npm install");
     }).then(() => {
-        return run("npm shrinkwrap");
+        // https://github.com/npm/npm/issues/11189
+        return run("npm shrinkwrap --dev");
     }).then(() => {
         return run("git add npm-shrinkwrap.json");
     }).then(() => {
