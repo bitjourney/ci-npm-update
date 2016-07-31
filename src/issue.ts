@@ -77,5 +77,7 @@ function compareViewToMarkdown(c: GitHubCompareView): string {
         return `* ${c.name}: [${c.getVersionRange()}](${c.getDiffUrl()})\n`;
     } else if (c.hasRepositoryUrl()) {
         return `* ${c.name} ${c.getRepositoryUrl()}\n`;
+    } else {
+        return `* ${c.name}`;
     }
 }
