@@ -6,6 +6,7 @@
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        "strictNullChecks": true,
         "declaration": true,
         "sourceMap": true,
         "outDir": "lib"
