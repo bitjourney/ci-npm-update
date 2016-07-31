@@ -4,11 +4,13 @@ This command keeps npm dependencies up-to-date by making pull-requests from CI.
 
 For example: https://github.com/gfx/ci-npm-update/pull/13
 
+![](doc-assets/ci-npm-update-pr.png)
+
 This is inspired by [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr).
 
 # Install
 
-```
+```sh
 npm install --dev ci-npm-update
 ```
 
@@ -16,7 +18,7 @@ npm install --dev ci-npm-update
 
 ## Configuration
 
-This command is designed to be executed by CI periodically.
+This command is designed to be executed by CI nightly builds.
 
 Set `GITHUB_ACCESS_TOKEN` environment to make a pull-requesto to github repositories,
 and set SSH keys to push to the repos from CI.
@@ -75,6 +77,12 @@ npm run build && envchain github node bin/ci-npm-update
 If you want to setup heroku schedulers, there's a template for it:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gfx/ci-npm-update)
+
+To test it, run the following command:
+
+```sh
+heroku run './build-circleci'
+```
 
 # License
 

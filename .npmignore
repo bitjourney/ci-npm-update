@@ -18,6 +18,11 @@ src/
 # tests
 test/
 
+# doc
+README.md
+CHANGES.md
+doc-assets/
+
 # Heroku
 build-circleci
 app.json
@@ -26,3 +31,4 @@ app.json
 circle.yml
 tslint.json
 npm-debug.log
+
