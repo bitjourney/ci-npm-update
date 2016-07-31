@@ -1,32 +1,57 @@
 # ci-npm-update [![CircleCI](https://circleci.com/gh/gfx/ci-npm-update.svg?style=svg)](https://circleci.com/gh/gfx/ci-npm-update)
 
-This command keeps npm dependencies up-to-date, making pull-requests from CI.
+This command keeps npm dependencies up-to-date by making pull-requests from CI.
 
 For example: https://github.com/gfx/ci-npm-update/pull/13
 
-# Usage
+This is inspired by [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr).
 
-For CI:
+# Install
 
 ```
-# setup env vars in the CI dashboard:
+npm install --dev ci-npm-update
+```
+
+# Usage
+
+## Configuration
+
+This command is designed to be executed by CI periodically.
+
+Set `GITHUB_ACCESS_TOKEN` environment to make a pull-requesto to github repositories,
+and set SSH keys to push to the repos from CI.
+
+If the CI environment has no git configuration, also set `GIT_USER_NAME` and `GIT_USER_EMAIL`
+to commit patches in CI.
+
+```sh
 export GITHUB_ACCESS_TOKEN=...
 export GIT_USER_NAME=gfx
 export GIT_USER_EMAIL=gfx@users.noreply.github.com
+```
 
-# and later:
+## Execution
+
+By default, `ci-npm-update` runs in dry-run mode. Set `--execute` to make pull-requests.
+
+```sh
 ci-npm-update --execute
 ```
 
-For local use:
+## Local Tests
+
+If you only run it in dry-run mode, no configuration is required:
 
 ```
-# envchain is recommended to save credentils locally
-envchain --set github GITHUB_ACCESS_TOKEN
-
 # run in dry-run mode:
-envchain github ci-npm-update
+ci-npm-update
+```
 
+If you want to make pull-requests in your local machine, use `GITHUB_ACCESS_TOKEN`:
+
+```
+# envchain is recommended
+envchain --set github GITHUB_ACCESS_TOKEN
 # run:
 envchain github ci-npm-update --execute
 ```
@@ -50,10 +75,6 @@ npm run build && envchain github node bin/ci-npm-update
 If you want to setup heroku schedulers, there's a template for it:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gfx/ci-npm-update)
-
-# See Also
-
-* [circleci-bundle-update-pr](https://github.com/masutaka/circleci-bundle-update-pr)
 
 # License
 
