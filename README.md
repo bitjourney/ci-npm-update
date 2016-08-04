@@ -1,4 +1,4 @@
-# ci-npm-update [![CircleCI](https://circleci.com/gh/gfx/ci-npm-update.svg?style=svg)](https://circleci.com/gh/gfx/ci-npm-update)
+# ci-npm-update [![CircleCI](https://circleci.com/gh/bitjourney/ci-npm-update.svg?style=svg)](https://circleci.com/gh/bitjourney/ci-npm-update)
 
 This command keeps npm dependencies up-to-date by making pull-requests from CI.
 
