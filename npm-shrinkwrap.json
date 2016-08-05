@@ -8,19 +8,19 @@
       "resolved": "https://registry.npmjs.org/@types/empower/-/empower-0.0.28.tgz"
     },
     "@types/form-data": {
-      "version": "0.0.28",
+      "version": "0.0.29",
       "from": "@types/form-data@>=0.0.0 <0.1.0",
-      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.28.tgz"
+      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.29.tgz"
     },
     "@types/mocha": {
-      "version": "2.2.28",
+      "version": "2.2.29",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.28.tgz"
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.29.tgz"
     },
     "@types/moment": {
-      "version": "2.11.28",
+      "version": "2.11.29",
       "from": "@types/moment@>=2.11.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/moment/-/moment-2.11.28.tgz"
+      "resolved": "https://registry.npmjs.org/@types/moment/-/moment-2.11.29.tgz"
     },
     "@types/node": {
       "version": "4.0.30",
@@ -29,7 +29,7 @@
     },
     "@types/power-assert": {
       "version": "0.0.27",
-      "from": "@types/power-assert@0.0.27",
+      "from": "@types/power-assert@>=0.0.27 <0.0.28",
       "resolved": "https://registry.npmjs.org/@types/power-assert/-/power-assert-0.0.27.tgz"
     },
     "@types/power-assert-formatter": {
@@ -38,9 +38,16 @@
       "resolved": "https://registry.npmjs.org/@types/power-assert-formatter/-/power-assert-formatter-0.0.26.tgz"
     },
     "@types/request": {
-      "version": "0.0.27",
-      "from": "@types/request@0.0.27",
-      "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.27.tgz"
+      "version": "0.0.28",
+      "from": "@types/request@>=0.0.28 <0.0.29",
+      "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
+      "dependencies": {
+        "@types/node": {
+          "version": "6.0.31",
+          "from": "@types/node@>=6.0.0 <6.1.0",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.31.tgz"
+        }
+      }
     },
     "acorn": {
       "version": "3.3.0",
@@ -721,7 +728,7 @@
     },
     "to-iso-string": {
       "version": "0.0.2",
-      "from": "to-iso-string@0.0.2",
+      "from": "to-iso-string@>=0.0.2 <0.0.3",
       "resolved": "https://registry.npmjs.org/to-iso-string/-/to-iso-string-0.0.2.tgz"
     },
     "tough-cookie": {
