@@ -1,6 +1,6 @@
 {
   "name": "ci-npm-update",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "@types/empower": {
       "version": "0.0.28",
