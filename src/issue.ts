@@ -3,7 +3,7 @@
 import { GitHubCompareView } from "./compare_view";
 import { NpmConfig } from "./npm_config";
 
-const SIGNATURE = "[ci-npm-update](https://github.com/gfx/ci-npm-update)";
+const SIGNATURE = "[bitjourney/ci-npm-update](https://github.com/bitjourney/ci-npm-update)";
 
 export function createBody(list: GitHubCompareView[], npmConfigPromise: Promise<NpmConfig>): Promise<string> {
     return npmConfigPromise.then((npmConfig) => {
