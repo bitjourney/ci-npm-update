@@ -4,7 +4,7 @@
   "description": "Keep NPM dependencies up-to-date with CI, providing version-to-version diff for each library",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gfx/ci-npm-update.git"
+    "url": "git@github.com:bitjourney/ci-npm-update.git"
   },
   "main": "index.js",
   "bin": "bin/ci-npm-update",

@@ -1,14 +1,18 @@
 import { NpmConfig } from "./npm_config";
+import { GitHubApi } from "./github";
 
 export class GitHubCompareView {
 
+    // url can be:
+    // git+https://github.com/foo/bar.git
+    // https://github.com/foo/bar.baz.git
+    // git@github.com:foo/bar.git
     static fixupUrl(repository: { url: string }): string | null {
         if (!(repository && repository.url)) {
             return null;
         }
-        // url can be: git+https://github.com/foo/bar.git
-        const matched = /:\/\/([^\/]+\/[^\/]+\/[^\.\/]+)/.exec(repository.url);
-        return matched ? `https://${matched[1]}` : repository.url;
+        let data = GitHubApi.parseUrl(repository.url);
+        return `https://${data.host}/${data.owner}/${data.repository}`;
     }
 
     name: string;
