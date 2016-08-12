@@ -9,6 +9,7 @@
   "main": "index.js",
   "bin": "bin/ci-npm-update",
   "scripts": {
+    "dry-run": "npm build && bin/ci-npm-update",
     "prepublish": "npm test",
     "setup": "npm install && npm dedupe",
     "build": "npm run lint && tsc",
