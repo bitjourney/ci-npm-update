@@ -99,9 +99,13 @@ export function start({
         ]);
     }).then(([current, updated]) => {
         return current.diff(updated);
-    }).then((shrinkWrapDiff) => {
-        return shrinkWrapDiff.getCompareViewList();
     }).then((compareViewList) => {
+        if (compareViewList.length === 0) {
+            // There're only diffs in sub dependencies
+            // e.g. https://github.com/bitjourney/ci-npm-update/pull/21/files
+            return Promise.reject(new AllDependenciesAreUpToDate());
+        }
+
         return Issue.createBody(compareViewList, NpmConfig.readFromFile());
     }).then((issue) => {
         console.log("-------");

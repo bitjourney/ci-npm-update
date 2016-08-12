@@ -48,8 +48,8 @@ export class ShrinkWrap {
         return parts[parts.length - 1];
     }
 
-    diff(other: ShrinkWrap): Promise<ShrinkWrapDiff> {
-        return Promise.resolve(new ShrinkWrapDiff(this, other));
+    diff(other: ShrinkWrap): Promise<GitHubCompareView[]> {
+        return new ShrinkWrapDiff(this, other).getCompareViewList();
     }
 }
 
