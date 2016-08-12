@@ -104,8 +104,9 @@ export function start({
     }).then((compareViewList) => {
         return Issue.createBody(compareViewList, NpmConfig.readFromFile());
     }).then((issue) => {
+        console.log("-------");
         console.log(issue);
-        console.log("");
+        console.log("--------");
 
         let gitPushPromise: Promise<void>;
         if (execute) {
