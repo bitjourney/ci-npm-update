@@ -18,9 +18,9 @@
       "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.29.tgz"
     },
     "@types/moment": {
-      "version": "2.11.29",
+      "version": "2.13.0",
       "from": "@types/moment@>=2.11.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/moment/-/moment-2.11.29.tgz"
+      "resolved": "https://registry.npmjs.org/@types/moment/-/moment-2.13.0.tgz"
     },
     "@types/node": {
       "version": "4.0.30",
@@ -43,9 +43,9 @@
       "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
       "dependencies": {
         "@types/node": {
-          "version": "6.0.31",
+          "version": "6.0.33",
           "from": "@types/node@>=6.0.0 <6.1.0",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.31.tgz"
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.33.tgz"
         }
       }
     },
@@ -282,9 +282,9 @@
           "resolved": "https://registry.npmjs.org/glob/-/glob-5.0.15.tgz"
         },
         "minimatch": {
-          "version": "3.0.2",
+          "version": "3.0.3",
           "from": "minimatch@>=2.0.0 <3.0.0||>=3.0.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.2.tgz"
+          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.3.tgz"
         }
       }
     },
@@ -779,9 +779,9 @@
           "resolved": "https://registry.npmjs.org/glob/-/glob-7.0.5.tgz"
         },
         "minimatch": {
-          "version": "3.0.2",
+          "version": "3.0.3",
           "from": "minimatch@>=3.0.2 <4.0.0",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.2.tgz"
+          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.3.tgz"
         }
       }
     },
