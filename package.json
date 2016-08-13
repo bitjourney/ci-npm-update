@@ -1,6 +1,6 @@
 {
   "name": "ci-npm-update",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Keep NPM dependencies up-to-date with CI, providing version-to-version diff for each library",
   "repository": {
     "type": "git",
