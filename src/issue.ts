@@ -17,7 +17,7 @@ export function createBody(list: GitHubCompareView[], npmConfigPromise: Promise<
 
         const dependencyNames = Object.keys(npmConfig.dependencies);
         if (dependencyNames.length !== 0) {
-            const head = "# Dependencies declared in package.json\n\n";
+            const head = "\n## Dependencies declared in package.json\n\n";
             let section = "";
 
             dependencyNames.forEach((name) => {
@@ -35,7 +35,7 @@ export function createBody(list: GitHubCompareView[], npmConfigPromise: Promise<
 
         const devDependencyNames = Object.keys(npmConfig.devDependencies);
         if (devDependencyNames.length !== 0) {
-            const head = "# DevDependencies declared in package.json\n\n";
+            const head = "\n## DevDependencies declared in package.json\n\n";
             let section = "";
 
             devDependencyNames.forEach((name) => {
@@ -52,7 +52,7 @@ export function createBody(list: GitHubCompareView[], npmConfigPromise: Promise<
         }
 
         if (map.size !== 0) {
-            const head = "## Dependencies not declared in package.json\n\n";
+            const head = "\n## Dependencies not declared in package.json\n\n";
             let section = "";
 
             list.forEach((c) => {
