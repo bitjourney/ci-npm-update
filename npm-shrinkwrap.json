@@ -8,14 +8,14 @@
       "resolved": "https://registry.npmjs.org/@types/empower/-/empower-0.0.28.tgz"
     },
     "@types/form-data": {
-      "version": "0.0.29",
+      "version": "0.0.30",
       "from": "@types/form-data@>=0.0.0 <0.1.0",
-      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.29.tgz"
+      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.30.tgz"
     },
     "@types/mocha": {
-      "version": "2.2.29",
+      "version": "2.2.30",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.29.tgz"
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.30.tgz"
     },
     "@types/moment": {
       "version": "2.13.0",
@@ -43,9 +43,9 @@
       "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
       "dependencies": {
         "@types/node": {
-          "version": "6.0.33",
+          "version": "6.0.36",
           "from": "@types/node@>=6.0.0 <6.1.0",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.33.tgz"
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.36.tgz"
         }
       }
     },
@@ -742,9 +742,9 @@
       "resolved": "https://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz"
     },
     "ts-node": {
-      "version": "1.2.2",
+      "version": "1.2.3",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.2.2.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.2.3.tgz",
       "dependencies": {
         "diff": {
           "version": "2.2.3",
