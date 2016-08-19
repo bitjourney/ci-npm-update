@@ -18,7 +18,7 @@ export type GitHubPullRequestParameters = {
 export class GitHubApi {
 
     static parseUrl(url: string): { host: string, owner: string, repository: string } {
-        const matched = /^(?:git@|(?:git\+)?https:\/\/)([^\/:]+)[\/:]([^\/]+)\/([^\/]+)(?!\.git)/.exec(url);
+        const matched = /^(?:git@|(?:git\+)?https:\/\/|git:\/\/)([^\/:]+)[\/:]([^\/]+)\/([^\/]+)(?!\.git)/.exec(url);
         if (!matched) {
             throw Error(`Cannot parse git repository URL: ${url}`);
         }

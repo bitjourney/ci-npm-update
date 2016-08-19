@@ -6,6 +6,7 @@ const githubDataSet = {
     "github ssh url": "git@github.com:foo/something.useful.git",
     "github https url": "https://github.com/foo/something.useful",
     "github https+git url": "https://github.com/foo/something.useful.git",
+    "github git url": "git://github.com/foo/something.useful.git",
 };
 const gheDataSet = {
     "ghe ssh url": "git@ghe.example.com:foo/something.useful.git",
