@@ -43,9 +43,9 @@
       "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
       "dependencies": {
         "@types/node": {
-          "version": "6.0.36",
+          "version": "6.0.37",
           "from": "@types/node@>=6.0.0 <6.1.0",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.36.tgz"
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.37.tgz"
         }
       }
     },
@@ -764,9 +764,9 @@
       "resolved": "https://registry.npmjs.org/tsconfig/-/tsconfig-5.0.3.tgz"
     },
     "tslint": {
-      "version": "3.15.0",
+      "version": "3.15.1",
       "from": "tslint@>=3.13.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/tslint/-/tslint-3.15.0.tgz",
+      "resolved": "https://registry.npmjs.org/tslint/-/tslint-3.15.1.tgz",
       "dependencies": {
         "diff": {
           "version": "2.2.3",
