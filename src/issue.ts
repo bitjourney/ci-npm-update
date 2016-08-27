@@ -80,6 +80,6 @@ function compareViewToMarkdown(c: GitHubCompareView): string {
             return `* ${c.name} ${c.getRepositoryUrl()}\n`;
         }
     } else {
-        return `* ${c.name}`;
+        return `* ${c.name}\n`;
     }
 }
