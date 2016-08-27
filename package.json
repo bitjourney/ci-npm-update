@@ -10,7 +10,8 @@
   "bin": "bin/ci-npm-update",
   "scripts": {
     "dry-run": "npm run build && bin/ci-npm-update",
-    "prepublish": "npm test",
+    "preversion": "npm test",
+    "postpublish": "git push origin master && git push origin --tags",
     "setup": "npm install && npm dedupe",
     "build": "npm run lint && tsc",
     "lint": "tslint src/**/*.ts",
