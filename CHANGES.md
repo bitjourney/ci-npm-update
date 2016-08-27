@@ -1,12 +1,16 @@
 # The Reivision History of ci-npm-update
 
+## v1.0.6 - 2016/08/27
+
+* Fix an issue that git protocol URLs caused crashes (#31)
+
 ## v1.0.5 - 2016/08/27
 
 * Fix issue contents
 
 ## v1.0.4 - 2016/08/19
 
-* Fix an issue that git protocol URLs caused failures (#24)
+* Fix an issue that git protocol URLs caused crashes (#24)
 
 ## v1.0.3 - 2016/08/13
 
