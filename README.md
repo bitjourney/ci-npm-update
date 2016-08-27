@@ -11,7 +11,7 @@ This is inspired by [circleci-bundle-update-pr](https://github.com/masutaka/circ
 # Install
 
 ```sh
-npm install --dev ci-npm-update
+npm install --save-dev ci-npm-update
 ```
 
 # Usage
