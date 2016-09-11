@@ -3,10 +3,6 @@ import { GitHubApi } from "./github";
 
 export class GitHubCompareView {
 
-    // url can be:
-    // git+https://github.com/foo/bar.git
-    // https://github.com/foo/bar.baz.git
-    // git@github.com:foo/bar.git
     static fixupUrl(repository: { url: string }): string | null {
         if (!(repository && repository.url)) {
             return null;
