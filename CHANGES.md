@@ -1,5 +1,9 @@
 # The Reivision History of ci-npm-update
 
+## v1.0.7 - 2016/09/12
+
+* Support git+ssh protocols (#37)
+
 ## v1.0.6 - 2016/08/27
 
 * Fix an issue that git protocol URLs caused crashes (#31)
