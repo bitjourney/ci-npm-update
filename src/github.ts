@@ -26,34 +26,23 @@ export class GitHubApi {
         // http://github.com/foo/bar.baz.git
         // https://github.com/foo/bar.baz.git
         const schemeRegexps = [
-            "(?:git:\\/\\/)",
-            "(?:git@)",
-            "(?:git\\+https:\\/\\/)",
-            "(?:git\\+ssh:\\/\\/git@)",
-            "(?:http:\\/\\/)",
-            "(?:https:\\/\\/)",
+            "git:\\/\\/",
+            "git@",
+            "git\\+https:\\/\\/",
+            "git\\+ssh:\\/\\/git@",
+            "http:\\/\\/",
+            "https:\\/\\/",
         ];
-        let host: string = "";
-        let owner: string = "";
-        let repository: string = "";
-        schemeRegexps.forEach((schemeRegexp) => {
-            const hostRgexp = "([^\\/:]+)[\\/:]";
-            const pathRegexp = "([^\\/]+)\\/([^\\/]+)(?!\\.git)";
-            const matched = new RegExp(`^${schemeRegexp}${hostRgexp}${pathRegexp}$`).exec(url);
-            if (matched) {
-                host = matched[1];
-                owner = matched[2];
-                repository = matched[3].replace(/\.git$/, "");
-                return;
-            }
-        });
-        if (host === "" || owner === "" || repository === "") {
+        const hostRgexp = "([^\\/:]+)[\\/:]";
+        const pathRegexp = "([^\\/]+)\\/([^\\/]+)(?!\\.git)";
+        const matched = new RegExp(`^(?:${schemeRegexps.join("|")})${hostRgexp}${pathRegexp}$`).exec(url);
+        if (!matched) {
             throw Error(`Cannot parse git repository URL: ${url}`);
         }
         return {
-            host,
-            owner,
-            repository,
+            host: matched[1],
+            owner: matched[2],
+            repository: matched[3].replace(/\.git$/, ""),
         };
     }
 
