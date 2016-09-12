@@ -33,9 +33,9 @@ export class GitHubApi {
             "http:\\/\\/",
             "https:\\/\\/",
         ];
-        const hostRgexp = "([^\\/:]+)[\\/:]";
+        const hostRegexp = "([^\\/:]+)[\\/:]";
         const pathRegexp = "([^\\/]+)\\/([^\\/]+)(?!\\.git)";
-        const matched = new RegExp(`^(?:${schemeRegexps.join("|")})${hostRgexp}${pathRegexp}$`).exec(url);
+        const matched = new RegExp(`^(?:${schemeRegexps.join("|")})${hostRegexp}${pathRegexp}$`).exec(url);
         if (!matched) {
             throw Error(`Cannot parse git repository URL: ${url}`);
         }
