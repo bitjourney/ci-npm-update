@@ -3,19 +3,19 @@
   "version": "1.0.7",
   "dependencies": {
     "@types/empower": {
-      "version": "0.0.28",
+      "version": "0.0.29",
       "from": "@types/empower@>=0.0.0 <0.1.0",
-      "resolved": "https://registry.npmjs.org/@types/empower/-/empower-0.0.28.tgz"
+      "resolved": "https://registry.npmjs.org/@types/empower/-/empower-0.0.29.tgz"
     },
     "@types/form-data": {
-      "version": "0.0.31",
+      "version": "0.0.32",
       "from": "@types/form-data@>=0.0.0 <0.1.0",
-      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.31.tgz"
+      "resolved": "https://registry.npmjs.org/@types/form-data/-/form-data-0.0.32.tgz"
     },
     "@types/mocha": {
-      "version": "2.2.31",
+      "version": "2.2.32",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.31.tgz"
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.32.tgz"
     },
     "@types/moment": {
       "version": "2.13.0",
@@ -33,9 +33,9 @@
       "resolved": "https://registry.npmjs.org/@types/power-assert/-/power-assert-0.0.27.tgz"
     },
     "@types/power-assert-formatter": {
-      "version": "0.0.26",
+      "version": "0.0.27",
       "from": "@types/power-assert-formatter@>=0.0.0 <0.1.0",
-      "resolved": "https://registry.npmjs.org/@types/power-assert-formatter/-/power-assert-formatter-0.0.26.tgz"
+      "resolved": "https://registry.npmjs.org/@types/power-assert-formatter/-/power-assert-formatter-0.0.27.tgz"
     },
     "@types/request": {
       "version": "0.0.28",
@@ -43,9 +43,9 @@
       "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
       "dependencies": {
         "@types/node": {
-          "version": "6.0.38",
+          "version": "6.0.39",
           "from": "@types/node@>=6.0.0 <6.1.0",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.38.tgz"
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.39.tgz"
         }
       }
     },
