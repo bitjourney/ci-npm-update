@@ -43,9 +43,9 @@
       "resolved": "https://registry.npmjs.org/@types/request/-/request-0.0.28.tgz",
       "dependencies": {
         "@types/node": {
-          "version": "6.0.40",
+          "version": "6.0.41",
           "from": "@types/node@>=6.0.0 <6.1.0",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.40.tgz"
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.41.tgz"
         }
       }
     },
@@ -55,9 +55,9 @@
       "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz"
     },
     "acorn-es7-plugin": {
-      "version": "1.0.17",
+      "version": "1.0.18",
       "from": "acorn-es7-plugin@>=1.0.12 <2.0.0",
-      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.0.17.tgz"
+      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.0.18.tgz"
     },
     "amdefine": {
       "version": "1.0.0",
