@@ -55,9 +55,9 @@
       "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz"
     },
     "acorn-es7-plugin": {
-      "version": "1.0.18",
+      "version": "1.1.0",
       "from": "acorn-es7-plugin@>=1.0.12 <2.0.0",
-      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.0.18.tgz"
+      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.1.0.tgz"
     },
     "amdefine": {
       "version": "1.0.0",
