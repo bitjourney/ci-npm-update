@@ -7,8 +7,12 @@ export class GitHubCompareView {
         if (!(repository && repository.url)) {
             return null;
         }
-        let data = GitHubApi.parseUrl(repository.url);
-        return `https://${data.host}/${data.owner}/${data.repository}`;
+        try {
+            let data = GitHubApi.parseUrl(repository.url);
+            return `https://${data.host}/${data.owner}/${data.repository}`;
+        } catch (e) {
+            return null;
+        }
     }
 
     name: string;
