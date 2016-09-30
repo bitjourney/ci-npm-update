@@ -20,5 +20,11 @@ describe("CompareView", () => {
                 url: "git+https://github.com/bitjourney/ci-npm-update",
             }) === "https://github.com/bitjourney/ci-npm-update");
         });
+
+        it("returns null for garbage", () => {
+            assert(GitHubCompareView.fixupUrl({
+                url: "this is not a repository url",
+            }) === null);
+        });
     });
 });
