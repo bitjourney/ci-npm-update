@@ -1,4 +1,4 @@
-import * as request from "request";
+const request = require("request");
 
 const USER_AGENT = "ci-npm-update/1.0";
 
@@ -94,7 +94,7 @@ export class GitHubApi {
                         base: parameters.base,
                     },
                 },
-                (err, _response, body) => {
+                (err: any, _response: any, body: any) => {
                     if (err) {
                         reject(err);
                     } else if (body.errors || !body.html_url) {

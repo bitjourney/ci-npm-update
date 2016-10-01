@@ -3,11 +3,11 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "allowJs": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "strictNullChecks": true,
-        "declaration": true,
         "sourceMap": true,
         "outDir": "lib"
     },

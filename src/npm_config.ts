@@ -1,4 +1,4 @@
-import * as request from "request";
+const request = require("request");
 import * as fs from "fs";
 
 const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
@@ -20,7 +20,7 @@ export class NpmConfig {
     static getFromRegistry(name: string, version: string): Promise<NpmConfig> {
         return new Promise<NpmConfig>((resolve, _reject) => {
             const url = `${REGISTRY_ENDPOINT}/${name}/${version}`;
-            request(url, (err, res, body) => {
+            request(url, (err: any, res: any, body: any) => {
                 if (err) {
                     resolve(new NpmConfig({
                         name: name,
