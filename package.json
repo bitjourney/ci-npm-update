@@ -29,9 +29,7 @@
     "node": ">= 6.0.0"
   },
   "dependencies": {
-    "@types/moment": "^2.11.28",
-    "@types/node": "^4.0.30",
-    "@types/request": "^0.0.28",
+    "@types/node": "^6.0.41",
     "moment": "^2.14.1",
     "request": "^2.73.0"
   },
