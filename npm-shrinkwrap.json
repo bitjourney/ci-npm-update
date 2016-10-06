@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.32.tgz"
     },
     "@types/node": {
-      "version": "6.0.42",
+      "version": "6.0.45",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.42.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.45.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
@@ -33,9 +33,9 @@
       "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz"
     },
     "acorn-es7-plugin": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "from": "acorn-es7-plugin@>=1.0.12 <2.0.0",
-      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.1.0.tgz"
+      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.1.1.tgz"
     },
     "ansi-regex": {
       "version": "2.0.0",
