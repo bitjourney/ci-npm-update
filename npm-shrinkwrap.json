@@ -725,9 +725,9 @@
       "resolved": "https://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz"
     },
     "ts-node": {
-      "version": "1.4.0",
+      "version": "1.4.1",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.4.0.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.4.1.tgz",
       "dependencies": {
         "diff": {
           "version": "3.0.0",
@@ -757,9 +757,9 @@
           "resolved": "https://registry.npmjs.org/diff/-/diff-2.2.3.tgz"
         },
         "glob": {
-          "version": "7.1.0",
+          "version": "7.1.1",
           "from": "glob@>=7.0.3 <8.0.0",
-          "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.0.tgz"
+          "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.1.tgz"
         },
         "minimatch": {
           "version": "3.0.3",
