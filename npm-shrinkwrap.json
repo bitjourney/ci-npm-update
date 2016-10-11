@@ -725,14 +725,14 @@
       "resolved": "https://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz"
     },
     "ts-node": {
-      "version": "1.4.1",
+      "version": "1.4.2",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.4.1.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.4.2.tgz",
       "dependencies": {
         "diff": {
-          "version": "3.0.0",
+          "version": "3.0.1",
           "from": "diff@>=3.0.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/diff/-/diff-3.0.0.tgz"
+          "resolved": "https://registry.npmjs.org/diff/-/diff-3.0.1.tgz"
         },
         "minimist": {
           "version": "1.2.0",
