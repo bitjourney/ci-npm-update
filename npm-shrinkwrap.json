@@ -804,17 +804,11 @@
       "dev": true
     },
     "ts-node": {
-      "version": "1.4.3",
+      "version": "1.5.2",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.4.3.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.5.2.tgz",
       "dev": true,
       "dependencies": {
-        "diff": {
-          "version": "3.0.1",
-          "from": "diff@>=3.0.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/diff/-/diff-3.0.1.tgz",
-          "dev": true
-        },
         "minimist": {
           "version": "1.2.0",
           "from": "minimist@>=1.2.0 <2.0.0",
