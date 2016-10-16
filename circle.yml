@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   pre:
+    - npm install -g npm
     - npm run setup
     - npm run build
   post:
