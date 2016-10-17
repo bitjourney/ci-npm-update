@@ -804,9 +804,9 @@
       "dev": true
     },
     "ts-node": {
-      "version": "1.5.2",
+      "version": "1.6.0",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.5.2.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.6.0.tgz",
       "dev": true,
       "dependencies": {
         "minimist": {
