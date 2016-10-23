@@ -8,7 +8,10 @@ import * as moment from "moment";
 function run(command: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         console.log(`>> ${command}`);
-        exec(command, "utf8", (error, stdout, stderr) => {
+        exec(command, {
+            encoding: "utf8",
+            maxBuffer: 1024 * 1024,
+        }, (error, stdout, stderr) => {
             if (stdout.length > 0) {
                 console.log(stdout);
             }
