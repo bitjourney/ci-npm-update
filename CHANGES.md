@@ -1,5 +1,9 @@
 # The Reivision History of ci-npm-update
 
+## v1.0.9 - 2016/10/23
+
+* Fix maxBuffer exceeded errors [#68](https://github.com/bitjourney/ci-npm-update/pull/68)
+
 ## v1.0.8 - 2016/09/30
 
 * Avoid crashes when repository URLs are not a valid git repository (#50, #51)
