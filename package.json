@@ -31,7 +31,7 @@
   "dependencies": {
     "@types/node": "^6.0.41",
     "moment": "^2.14.1",
-    "request": "^2.73.0"
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.28",
