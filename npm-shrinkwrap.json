@@ -706,9 +706,9 @@
       "dev": true
     },
     "source-map-support": {
-      "version": "0.4.5",
+      "version": "0.4.6",
       "from": "source-map-support@>=0.4.0 <0.5.0",
-      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.5.tgz",
+      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.6.tgz",
       "dev": true
     },
     "sprintf-js": {
