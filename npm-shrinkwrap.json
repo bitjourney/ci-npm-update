@@ -298,9 +298,9 @@
       "resolved": "https://registry.npmjs.org/forever-agent/-/forever-agent-0.6.1.tgz"
     },
     "form-data": {
-      "version": "2.1.1",
+      "version": "2.1.2",
       "from": "form-data@>=2.1.1 <2.2.0",
-      "resolved": "https://registry.npmjs.org/form-data/-/form-data-2.1.1.tgz"
+      "resolved": "https://registry.npmjs.org/form-data/-/form-data-2.1.2.tgz"
     },
     "fs.realpath": {
       "version": "1.0.0",
@@ -780,9 +780,9 @@
       "dev": true
     },
     "ts-node": {
-      "version": "1.6.1",
+      "version": "1.7.0",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.6.1.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.7.0.tgz",
       "dev": true,
       "dependencies": {
         "minimist": {
@@ -843,9 +843,9 @@
       "dev": true
     },
     "typescript": {
-      "version": "2.0.7",
+      "version": "2.0.8",
       "from": "typescript@>=2.0.0",
-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-2.0.7.tgz",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-2.0.8.tgz",
       "dev": true
     },
     "underscore.string": {
@@ -860,10 +860,22 @@
       "resolved": "https://registry.npmjs.org/universal-deep-strict-equal/-/universal-deep-strict-equal-1.2.2.tgz",
       "dev": true
     },
+    "user-home": {
+      "version": "1.1.1",
+      "from": "user-home@>=1.1.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/user-home/-/user-home-1.1.1.tgz",
+      "dev": true
+    },
     "util-deprecate": {
       "version": "1.0.2",
       "from": "util-deprecate@>=1.0.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+      "dev": true
+    },
+    "v8flags": {
+      "version": "2.0.11",
+      "from": "v8flags@>=2.0.11 <3.0.0",
+      "resolved": "https://registry.npmjs.org/v8flags/-/v8flags-2.0.11.tgz",
       "dev": true
     },
     "verror": {
