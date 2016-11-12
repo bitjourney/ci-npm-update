@@ -40,10 +40,10 @@ export type Options = {
     execute: boolean, // default to dry-run mode
 }
 
-export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promise<void> {
+export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promise<any> {
     const setUserNamePromise = gitUserName ? run(`git config user.name '${gitUserName}'`) : Promise.resolve();
     const setUserEmailPromise = gitUserEmail ? run(`git config user.email '${gitUserEmail}'`) : Promise.resolve();
-    return Promise.all([setUserNamePromise, setUserEmailPromise]);
+    return Promise.all<any>([setUserNamePromise, setUserEmailPromise]);
 }
 
 export function createGitBranch(branch: string): Promise<ShrinkWrap> {
@@ -115,7 +115,7 @@ export function start({
         console.log(issue);
         console.log("--------");
 
-        let gitPushPromise: Promise<void>;
+        let gitPushPromise: Promise<any>;
         if (execute) {
             gitPushPromise = run(`git push origin ${branch}`);
         } else {
@@ -123,7 +123,7 @@ export function start({
             gitPushPromise = Promise.resolve();
         }
 
-        return gitPushPromise.then((_result) => {
+        return gitPushPromise.then((_) => {
             return run("git rev-parse --abbrev-ref HEAD");
         }).then((baseBranch) => {
             return Promise.all([
