@@ -868,9 +868,9 @@
       "dev": true
     },
     "uuid": {
-      "version": "3.0.0",
+      "version": "3.0.1",
       "from": "uuid@>=3.0.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.0.1.tgz"
     },
     "v8flags": {
       "version": "2.0.11",
