@@ -775,11 +775,17 @@
       "dev": true
     },
     "ts-node": {
-      "version": "1.7.0",
+      "version": "1.7.2",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.7.0.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.7.2.tgz",
       "dev": true,
       "dependencies": {
+        "diff": {
+          "version": "3.1.0",
+          "from": "diff@>=3.1.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/diff/-/diff-3.1.0.tgz",
+          "dev": true
+        },
         "minimist": {
           "version": "1.2.0",
           "from": "minimist@>=1.2.0 <2.0.0",
