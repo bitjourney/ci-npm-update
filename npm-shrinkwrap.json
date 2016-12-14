@@ -15,9 +15,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.51",
+      "version": "6.0.52",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.51.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.52.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
@@ -678,9 +678,9 @@
       "resolved": "https://registry.npmjs.org/request/-/request-2.79.0.tgz"
     },
     "resolve": {
-      "version": "1.1.7",
+      "version": "1.2.0",
       "from": "resolve@>=1.1.7 <2.0.0",
-      "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.1.7.tgz",
+      "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.2.0.tgz",
       "dev": true
     },
     "sigmund": {
