@@ -9,15 +9,15 @@
       "dev": true
     },
     "@types/mocha": {
-      "version": "2.2.34",
+      "version": "2.2.35",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.34.tgz",
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.35.tgz",
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.53",
+      "version": "6.0.54",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.53.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.54.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
@@ -775,15 +775,15 @@
       "dev": true
     },
     "ts-node": {
-      "version": "1.7.2",
+      "version": "1.7.3",
       "from": "ts-node@>=1.2.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.7.2.tgz",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-1.7.3.tgz",
       "dev": true,
       "dependencies": {
         "diff": {
-          "version": "3.1.0",
+          "version": "3.2.0",
           "from": "diff@>=3.1.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/diff/-/diff-3.1.0.tgz",
+          "resolved": "https://registry.npmjs.org/diff/-/diff-3.2.0.tgz",
           "dev": true
         },
         "minimist": {
