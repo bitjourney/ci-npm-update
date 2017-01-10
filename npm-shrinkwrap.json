@@ -9,15 +9,15 @@
       "dev": true
     },
     "@types/mocha": {
-      "version": "2.2.36",
+      "version": "2.2.37",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.36.tgz",
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.37.tgz",
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.58",
+      "version": "6.0.59",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.58.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.59.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
