@@ -15,9 +15,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.59",
+      "version": "6.0.60",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.59.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.60.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
