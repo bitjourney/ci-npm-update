@@ -9,9 +9,9 @@
       "dev": true
     },
     "@types/mocha": {
-      "version": "2.2.37",
+      "version": "2.2.38",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.37.tgz",
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.38.tgz",
       "dev": true
     },
     "@types/node": {
