@@ -9,9 +9,9 @@
       "dev": true
     },
     "@types/mocha": {
-      "version": "2.2.38",
+      "version": "2.2.39",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.38.tgz",
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.39.tgz",
       "dev": true
     },
     "@types/node": {
@@ -32,9 +32,9 @@
       "dev": true
     },
     "acorn": {
-      "version": "4.0.4",
+      "version": "4.0.8",
       "from": "acorn@>=4.0.0 <5.0.0",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.4.tgz",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.8.tgz",
       "dev": true
     },
     "acorn-es7-plugin": {
