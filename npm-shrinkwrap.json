@@ -245,9 +245,9 @@
       "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
     },
     "espurify": {
-      "version": "1.6.0",
+      "version": "1.6.1",
       "from": "espurify@>=1.6.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/espurify/-/espurify-1.6.0.tgz",
+      "resolved": "https://registry.npmjs.org/espurify/-/espurify-1.6.1.tgz",
       "dev": true
     },
     "estraverse": {
