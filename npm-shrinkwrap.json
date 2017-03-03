@@ -481,9 +481,9 @@
       "dev": true
     },
     "make-error": {
-      "version": "1.2.1",
+      "version": "1.2.2",
       "from": "make-error@>=1.1.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/make-error/-/make-error-1.2.1.tgz",
+      "resolved": "https://registry.npmjs.org/make-error/-/make-error-1.2.2.tgz",
       "dev": true
     },
     "mime-db": {
@@ -719,9 +719,9 @@
       "dev": true
     },
     "sshpk": {
-      "version": "1.10.2",
+      "version": "1.11.0",
       "from": "sshpk@>=1.7.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.10.2.tgz",
+      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.11.0.tgz",
       "dependencies": {
         "assert-plus": {
           "version": "1.0.0",
