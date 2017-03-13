@@ -697,14 +697,14 @@
     },
     "source-map": {
       "version": "0.5.6",
-      "from": "source-map@>=0.5.3 <0.6.0",
+      "from": "source-map@>=0.5.6 <0.6.0",
       "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.5.6.tgz",
       "dev": true
     },
     "source-map-support": {
-      "version": "0.4.11",
+      "version": "0.4.12",
       "from": "source-map-support@>=0.4.0 <0.5.0",
-      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.11.tgz",
+      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.12.tgz",
       "dev": true
     },
     "sprintf-js": {
