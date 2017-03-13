@@ -9,9 +9,9 @@
       "dev": true
     },
     "@types/mocha": {
-      "version": "2.2.39",
+      "version": "2.2.40",
       "from": "@types/mocha@>=2.2.28 <3.0.0",
-      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.39.tgz",
+      "resolved": "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.40.tgz",
       "dev": true
     },
     "@types/node": {
@@ -44,9 +44,9 @@
       "dev": true
     },
     "ajv": {
-      "version": "4.11.4",
+      "version": "4.11.5",
       "from": "ajv@>=4.9.1 <5.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-4.11.4.tgz"
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-4.11.5.tgz"
     },
     "ansi-regex": {
       "version": "2.1.1",
