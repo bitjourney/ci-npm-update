@@ -38,9 +38,9 @@
       "dev": true
     },
     "acorn-es7-plugin": {
-      "version": "1.1.6",
+      "version": "1.1.7",
       "from": "acorn-es7-plugin@>=1.0.12 <2.0.0",
-      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.1.6.tgz",
+      "resolved": "https://registry.npmjs.org/acorn-es7-plugin/-/acorn-es7-plugin-1.1.7.tgz",
       "dev": true
     },
     "ajv": {
