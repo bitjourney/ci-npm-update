@@ -721,9 +721,9 @@
       "dev": true
     },
     "sshpk": {
-      "version": "1.11.0",
+      "version": "1.13.0",
       "from": "sshpk@>=1.7.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.11.0.tgz",
+      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.13.0.tgz",
       "dependencies": {
         "assert-plus": {
           "version": "1.0.0",
