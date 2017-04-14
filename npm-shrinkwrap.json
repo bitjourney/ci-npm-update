@@ -612,9 +612,9 @@
       "dev": true
     },
     "power-assert-context-reducer-ast": {
-      "version": "1.1.1",
+      "version": "1.1.2",
       "from": "power-assert-context-reducer-ast@>=1.0.7 <2.0.0",
-      "resolved": "https://registry.npmjs.org/power-assert-context-reducer-ast/-/power-assert-context-reducer-ast-1.1.1.tgz",
+      "resolved": "https://registry.npmjs.org/power-assert-context-reducer-ast/-/power-assert-context-reducer-ast-1.1.2.tgz",
       "dev": true
     },
     "power-assert-context-traversal": {
@@ -648,9 +648,9 @@
       "dev": true
     },
     "power-assert-renderer-diagram": {
-      "version": "1.1.1",
+      "version": "1.1.2",
       "from": "power-assert-renderer-diagram@>=1.0.7 <2.0.0",
-      "resolved": "https://registry.npmjs.org/power-assert-renderer-diagram/-/power-assert-renderer-diagram-1.1.1.tgz",
+      "resolved": "https://registry.npmjs.org/power-assert-renderer-diagram/-/power-assert-renderer-diagram-1.1.2.tgz",
       "dev": true
     },
     "power-assert-renderer-file": {
