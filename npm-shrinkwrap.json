@@ -889,9 +889,9 @@
       "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.0.1.tgz"
     },
     "v8flags": {
-      "version": "2.0.12",
+      "version": "2.1.1",
       "from": "v8flags@>=2.0.11 <3.0.0",
-      "resolved": "https://registry.npmjs.org/v8flags/-/v8flags-2.0.12.tgz",
+      "resolved": "https://registry.npmjs.org/v8flags/-/v8flags-2.1.1.tgz",
       "dev": true
     },
     "verror": {
