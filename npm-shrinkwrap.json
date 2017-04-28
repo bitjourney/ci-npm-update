@@ -15,9 +15,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.70",
+      "version": "6.0.71",
       "from": "@types/node@>=6.0.41 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.70.tgz"
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.71.tgz"
     },
     "@types/power-assert": {
       "version": "0.0.27",
@@ -280,9 +280,9 @@
       "dev": true
     },
     "extend": {
-      "version": "3.0.0",
+      "version": "3.0.1",
       "from": "extend@>=3.0.0 <3.1.0",
-      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.1.tgz"
     },
     "extsprintf": {
       "version": "1.0.2",
@@ -709,9 +709,9 @@
       "dev": true
     },
     "source-map-support": {
-      "version": "0.4.14",
+      "version": "0.4.15",
       "from": "source-map-support@>=0.4.0 <0.5.0",
-      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.14.tgz",
+      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.15.tgz",
       "dev": true
     },
     "sprintf-js": {
