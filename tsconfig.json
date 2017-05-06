@@ -3,13 +3,17 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "moduleResolution": "node",
         "declaration": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "strictNullChecks": true,
         "sourceMap": true,
-        "outDir": "lib"
+        "outDir": "lib",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2015"],
+        "types": ["node"]
     },
     "formatCodeOptions": {
         "indentSize": 2,
