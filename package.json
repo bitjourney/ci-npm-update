@@ -15,7 +15,7 @@
     "setup": "npm install && npm dedupe",
     "build": "npm run lint && tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "npm run build && mocha --compilers ts:ts-node/register --opts test/support/default.opts test/**/*.test.ts"
+    "test": "TS_NODE_PROJECT=test/tsconfig.json mocha --opts test/support/default.opts test/**/*.test.ts"
   },
   "keywords": [
     "npm",

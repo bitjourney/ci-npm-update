@@ -1,6 +1,7 @@
+ --compilers ts:ts-node/register
+
 --require source-map-support/register
 --require ./test/support/mocha-setup-node.js
---require ./test/helpers/test-helper.js
 
 --full-trace
 --check-leaks

@@ -3,7 +3,6 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
-        "moduleResolution": "node",
         "declaration": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,
@@ -11,9 +10,10 @@
         "strictNullChecks": true,
         "sourceMap": true,
         "outDir": "lib",
+        "moduleResolution": "node",
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2015"],
-        "types": ["node", "mocha"]
+        "types": ["node"]
     },
     "formatCodeOptions": {
         "indentSize": 2,
