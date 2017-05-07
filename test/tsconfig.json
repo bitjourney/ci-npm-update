@@ -9,7 +9,11 @@
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "outDir": "../test.build"
+        "outDir": "../test.build",
+        "moduleResolution": "node",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2015"],
+        "types": ["node", "mocha"]
     },
     "formatCodeOptions": {
         "indentSize": 2,
