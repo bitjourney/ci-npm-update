@@ -13,7 +13,7 @@
         "outDir": "lib",
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2015"],
-        "types": ["node"]
+        "types": ["node", "mocha"]
     },
     "formatCodeOptions": {
         "indentSize": 2,
