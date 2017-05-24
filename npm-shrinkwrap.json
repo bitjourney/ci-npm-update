@@ -32,9 +32,9 @@
       "dev": true
     },
     "acorn": {
-      "version": "4.0.11",
+      "version": "4.0.13",
       "from": "acorn@>=4.0.0 <5.0.0",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.11.tgz",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.13.tgz",
       "dev": true
     },
     "acorn-es7-plugin": {
