@@ -1,23 +1,8 @@
 {
+    "extends": "../tsconfig",
     "compilerOptions": {
-        "removeComments": false,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "declaration": true,
-        "target": "es6",
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "outDir": "../test.build",
-        "moduleResolution": "node",
-        "typeRoots": ["node_modules/@types"],
-        "lib": ["es2015"],
         "types": ["node", "mocha"]
-    },
-    "formatCodeOptions": {
-        "indentSize": 2,
-        "tabSize": 2
     },
     "exclude": [
     ]
