@@ -16,9 +16,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "6.0.77",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.77.tgz",
-      "integrity": "sha512-VgifFhOC+P5Zv2CgD1ZanuoL/rNqHZ7ubQUXpaVvRCynSiqX+wvLf6e1qR3+CpmDbfhcRM917bXYmhDEiIl+XA=="
+      "version": "6.0.78",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.78.tgz",
+      "integrity": "sha512-+vD6E8ixntRzzZukoF3uP1iV+ZjVN3koTcaeK+BEoc/kSfGbLDIGC7RmCaUgVpUfN6cWvfczFRERCyKM9mkvXg=="
     },
     "@types/power-assert": {
       "version": "0.0.27",
