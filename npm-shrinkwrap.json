@@ -601,9 +601,9 @@
       "dev": true
     },
     "power-assert": {
-      "version": "1.4.3",
-      "resolved": "https://registry.npmjs.org/power-assert/-/power-assert-1.4.3.tgz",
-      "integrity": "sha1-GQmXQZ0WK6q35yGZZ1rcjRyZ+yQ=",
+      "version": "1.4.4",
+      "resolved": "https://registry.npmjs.org/power-assert/-/power-assert-1.4.4.tgz",
+      "integrity": "sha1-kpXqdDcZb1pgH95CDwQmMRhtdRc=",
       "dev": true
     },
     "power-assert-context-formatter": {
