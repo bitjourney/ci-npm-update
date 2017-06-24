@@ -19,6 +19,7 @@
             "check-type"
         ],
         "no-var-requires": false,
-        "no-require-imports": false
+        "no-require-imports": false,
+        "interface-name": "never-prefix"
     }
 }

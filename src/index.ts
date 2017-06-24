@@ -77,7 +77,7 @@ export function createGitBranch(branch: string): Promise<PackageLock> {
     });
 }
 
-export function start({
+export async function start({
     githubAccessToken: githubAccessToken,
     gitUserName: gitUserName,
     gitUserEmail: gitUserEmail,
@@ -87,62 +87,51 @@ export function start({
         console.assert(githubAccessToken, "Missing GITHUB_ACCESS_TOKEN or --token");
     }
 
+    const repositoryUrl = (await run("git remote get-url --push origin")).trim();
+
+    const githubApi = new github.GitHubApi({
+                repositoryUrl: repositoryUrl,
+                token: githubAccessToken,
+            });
+
     const timestamp = moment().format("YYYYMMDDhhmmss");
     const branch = `npm-update/${timestamp}`;
 
-    return setupGitConfig(gitUserName, gitUserEmail).then(() => {
-        return PackageLock.read();
-    }).then((packageLock) => {
-        return Promise.all([
-            Promise.resolve(packageLock),
-            createGitBranch(branch),
-        ]);
-    }).then(([current, updated]) => {
-        return current.diff(updated);
-    }).then((compareViewList) => {
-        if (compareViewList.length === 0) {
-            // There're only diffs in sub dependencies
-            // e.g. https://github.com/bitjourney/ci-npm-update/pull/21/files
-            return Promise.reject(new AllDependenciesAreUpToDate());
-        }
+    await setupGitConfig(gitUserName, gitUserEmail);
 
-        return Issue.createBody(compareViewList, NpmConfig.readFromFile());
-    }).then((issue) => {
-        console.log("-------");
-        console.log(issue);
-        console.log("--------");
+    const packageLock = await PackageLock.read();
+    const updatedPackageLock = await createGitBranch(branch);
+    const compareViewList = await packageLock.diff(updatedPackageLock);
 
-        let gitPushPromise: Promise<any>;
-        if (execute) {
-            gitPushPromise = run(`git push origin ${branch}`);
-        } else {
-            console.log("Skipped `git push` because --execute is not specified.");
-            gitPushPromise = Promise.resolve();
-        }
+    if (compareViewList.length === 0) {
+        // There're only diffs in sub dependencies
+        // e.g. https://github.com/bitjourney/ci-npm-update/pull/21/files
+        return Promise.reject(new AllDependenciesAreUpToDate());
+    }
 
-        return gitPushPromise.then((_) => {
-            return run("git rev-parse --abbrev-ref HEAD");
-        }).then((baseBranch) => {
-            return Promise.all([
-                run("git remote get-url --push origin"),
-                Promise.resolve({
+    const issue = await Issue.createBody(compareViewList, NpmConfig.readFromFile());
+
+    console.log("-------");
+    console.log(issue);
+    console.log("--------");
+
+    if (execute) {
+        await run(`git push origin ${branch}`);
+    } else {
+        console.log("Skipped `git push` because --execute is not specified.");
+    }
+
+    const baseBranch = (await run("git rev-parse --abbrev-ref HEAD")).trim();
+
+    if (execute) {
+        const response = await githubApi.createPullRequest({
                     title: `npm update at ${new Date()}`,
                     body: issue,
                     head: branch,
                     base: baseBranch.trim(),
-                }),
-            ]);
         });
-    }).then(([repositoryUrl, pullRequestData]: [string, github.GitHubPullRequestParameters]) => {
-        if (!execute) {
-            return <Promise<github.GitHubPullRequestResponse>>Promise.reject(new SkipToCreatePullRequest());
-        }
-
-        return new github.GitHubApi({
-            repositoryUrl: repositoryUrl.trim(),
-            token: githubAccessToken,
-        }).createPullRequest(pullRequestData);
-    }).then((response) => {
         return Promise.resolve(response.html_url);
-    });
+    } else {
+        return Promise.reject(new SkipToCreatePullRequest());
+    }
 }
