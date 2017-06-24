@@ -33,6 +33,9 @@
     "moment": "^2.14.1",
     "request": "^2.74.0"
   },
+  "peerDependencies": {
+    "npm": ">= 5.0"
+  },
   "devDependencies": {
     "@types/mocha": "^2.2.28",
     "@types/power-assert": "^0.0.27",

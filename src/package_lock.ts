@@ -2,21 +2,23 @@ import * as fs from "fs";
 import { GitHubCompareView } from "./compare_view";
 import { NpmConfig } from "./npm_config";
 
+export const DEFAULT_LOCK_FILE = "package-lock.json";
+
 export type ShrinkWrapData = {
     version: string;
     from: string;
     resolved: string;
 };
 
-export class ShrinkWrap {
+export class PackageLock {
 
-    static read(shrinkwrapFile = "npm-shrinkwrap.json"): Promise<ShrinkWrap> {
-        return new Promise<ShrinkWrap>((resolve, reject) => {
-            fs.readFile(shrinkwrapFile, "utf8", (err, data) => {
+    static read(lockFile = DEFAULT_LOCK_FILE): Promise<PackageLock> {
+        return new Promise<PackageLock>((resolve, reject) => {
+            fs.readFile(lockFile, "utf8", (err, data) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(new ShrinkWrap(JSON.parse(data)));
+                    resolve(new PackageLock(JSON.parse(data)));
                 }
             });
         });
@@ -48,16 +50,16 @@ export class ShrinkWrap {
         return parts[parts.length - 1];
     }
 
-    diff(other: ShrinkWrap): Promise<GitHubCompareView[]> {
+    diff(other: PackageLock): Promise<GitHubCompareView[]> {
         return new ShrinkWrapDiff(this, other).getCompareViewList();
     }
 }
 
 export class ShrinkWrapDiff {
-    older: ShrinkWrap;
-    newer: ShrinkWrap;
+    older: PackageLock;
+    newer: PackageLock;
 
-    constructor(older: ShrinkWrap, newer: ShrinkWrap) {
+    constructor(older: PackageLock, newer: PackageLock) {
         this.older = older;
         this.newer = newer;
     }

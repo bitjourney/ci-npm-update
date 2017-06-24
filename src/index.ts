@@ -1,4 +1,4 @@
-import { ShrinkWrap } from "./shrink_wrap";
+import { PackageLock, DEFAULT_LOCK_FILE } from "./package_lock";
 import { NpmConfig } from "./npm_config";
 import * as Issue from "./issue";
 import * as github from "./github";
@@ -46,18 +46,15 @@ export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promi
     return Promise.all<any>([setUserNamePromise, setUserEmailPromise]);
 }
 
-export function createGitBranch(branch: string): Promise<ShrinkWrap> {
+export function createGitBranch(branch: string): Promise<PackageLock> {
     console.log(`Creating a branch: ${branch}`);
 
     return run(`git checkout -b ${branch}`).then(() => {
         // npm update --depth 9999 might cause OOM:
         // https://github.com/npm/npm/issues/11876
-        return run("rm -rf node_modules npm-shrinkwrap.json ; npm install");
+        return run(`rm -rf node_modules ${DEFAULT_LOCK_FILE} ; npm install`);
     }).then(() => {
-        // https://github.com/npm/npm/issues/11189
-        return run("npm shrinkwrap --dev");
-    }).then(() => {
-        return run("git add npm-shrinkwrap.json");
+        return run(`git add ${DEFAULT_LOCK_FILE}`);
     }).then(() => {
         return run("git diff --cached");
     }).then((diff) => {
@@ -69,14 +66,14 @@ export function createGitBranch(branch: string): Promise<ShrinkWrap> {
             });
         }
     }).then(() => {
-        return ShrinkWrap.read();
-    }).then((shrinkWrap) => {
+        return PackageLock.read();
+    }).then((packageLock) => {
         return Promise.all([
-            Promise.resolve(shrinkWrap),
+            Promise.resolve(packageLock),
             run("git checkout -"),
         ]);
-    }).then(([shrinkWrap]) => {
-        return Promise.resolve(shrinkWrap);
+    }).then(([packageLock]) => {
+        return Promise.resolve(packageLock);
     });
 }
 
@@ -94,10 +91,10 @@ export function start({
     const branch = `npm-update/${timestamp}`;
 
     return setupGitConfig(gitUserName, gitUserEmail).then(() => {
-        return ShrinkWrap.read();
-    }).then((shrinkWrap) => {
+        return PackageLock.read();
+    }).then((packageLock) => {
         return Promise.all([
-            Promise.resolve(shrinkWrap),
+            Promise.resolve(packageLock),
             createGitBranch(branch),
         ]);
     }).then(([current, updated]) => {
