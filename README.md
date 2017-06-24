@@ -20,7 +20,7 @@ npm install --save-dev ci-npm-update
 
 This command is designed to be executed by CI nightly builds.
 
-Set `GITHUB_ACCESS_TOKEN` environment to make a pull-requesto to github repositories,
+Set `GITHUB_ACCESS_TOKEN` environment to make a pull-request to github repositories,
 and set SSH keys to push to the repos from CI.
 
 If the CI environment has no git configuration, also set `GIT_USER_NAME` and `GIT_USER_EMAIL`
