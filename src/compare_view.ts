@@ -1,5 +1,5 @@
-import { NpmConfig } from "./npm_config";
 import { GitHubApi } from "./github";
+import { NpmConfig } from "./npm_config";
 
 export class GitHubCompareView {
 
@@ -8,7 +8,7 @@ export class GitHubCompareView {
             return null;
         }
         try {
-            let data = GitHubApi.parseUrl(repository.url);
+            const data = GitHubApi.parseUrl(repository.url);
             return `https://${data.host}/${data.owner}/${data.repository}`;
         } catch (e) {
             return null;

@@ -19,7 +19,7 @@ const gheDataSet = {
 describe("GitHubApi", () => {
     context(".parseUrl(reading github.com URLs)", () => {
         Object.keys(githubDataSet).forEach((name) => {
-            const url = <string>(<any>githubDataSet)[name];
+            const url = (githubDataSet as any)[name] as string;
 
             it(`extracts "endpoint" from ${name}`, () => {
                 assert(GitHubApi.extractEndpoint(url) === "https://api.github.com");
@@ -37,7 +37,7 @@ describe("GitHubApi", () => {
 
     context(".parseUrl(ghe URLs)", () => {
         Object.keys(gheDataSet).forEach((name) => {
-            const url = <string>(<any>gheDataSet)[name];
+            const url = (gheDataSet as any)[name] as string;
 
             it(`extracts "endpoint" from ${name}`, () => {
                 assert(GitHubApi.extractEndpoint(url) === "https://ghe.example.com/api/v3");
@@ -59,4 +59,3 @@ describe("GitHubApi", () => {
         });
     });
 });
-

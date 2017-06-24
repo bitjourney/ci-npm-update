@@ -1,9 +1,9 @@
-import { PackageLock, DEFAULT_LOCK_FILE } from "./package_lock";
-import { NpmConfig } from "./npm_config";
-import * as Issue from "./issue";
-import * as github from "./github";
 import { exec } from "child_process";
 import * as moment from "moment";
+import * as github from "./github";
+import * as Issue from "./issue";
+import { NpmConfig } from "./npm_config";
+import { DEFAULT_LOCK_FILE, PackageLock } from "./package_lock";
 
 function run(command: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
@@ -33,11 +33,11 @@ export class AllDependenciesAreUpToDate extends SkipRemainingTasks { }
 
 export class SkipToCreatePullRequest extends SkipRemainingTasks { }
 
-export type Options = {
-    githubAccessToken: string,
-    gitUserName: string,
-    gitUserEmail: string,
-    execute: boolean, // default to dry-run mode
+export interface Options {
+    githubAccessToken: string;
+    gitUserName: string;
+    gitUserEmail: string;
+    execute: boolean; // default to dry-run mode
 }
 
 export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promise<any> {
@@ -90,7 +90,7 @@ export async function start({
     const repositoryUrl = (await run("git remote get-url --push origin")).trim();
 
     const githubApi = new github.GitHubApi({
-                repositoryUrl: repositoryUrl,
+                repositoryUrl,
                 token: githubAccessToken,
             });
 

@@ -14,7 +14,8 @@
     "postpublish": "git push origin master && git push origin --tags",
     "setup": "npm install && npm dedupe",
     "build": "npm run lint && tsc",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint src/**/*.ts test/**/*.ts",
+    "lint:fix": "tslint --fix src/**/*.ts test/**/*.ts",
     "test": "TS_NODE_PROJECT=test/tsconfig.json mocha --opts test/support/default.opts test/**/*.test.ts"
   },
   "keywords": [
@@ -40,11 +41,12 @@
   "devDependencies": {
     "@types/mocha": "*",
     "@types/power-assert": "*",
+    "espower-typescript": "^8.0.0",
     "mocha": "*",
     "power-assert": "*",
     "to-iso-string": "*",
     "ts-node": "*",
-    "tslint": "*",
+    "tslint": "^5.4.3",
     "typescript": "*"
   }
 }

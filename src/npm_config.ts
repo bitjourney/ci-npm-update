@@ -23,8 +23,8 @@ export class NpmConfig {
             request(url, (err: any, res: any, body: any) => {
                 if (err) {
                     resolve(new NpmConfig({
-                        name: name,
-                        version: version,
+                        name,
+                        version,
                         error: err,
                     }));
                     return;
@@ -35,18 +35,18 @@ export class NpmConfig {
                 } catch (e) {
                     const error = `Failed to get npm config from ${url}: ${res.statusCode} ${res.statusMessage}`;
                     resolve(new NpmConfig({
-                        name: name,
-                        version: version,
-                        error: error,
+                        name,
+                        version,
+                        error,
                     }));
                     return;
                 }
                 if (json.error) {
                     const error = `Failed to get npm config from ${url}: ${json.error}`;
                     resolve(new NpmConfig({
-                        name: name,
-                        version: version,
-                        error: error,
+                        name,
+                        version,
+                        error,
                     }));
                     return;
                 }
@@ -73,13 +73,13 @@ export class NpmConfig {
         Object.assign(this, json);
 
         if (!this.dependencies) {
-            this.dependencies = <{string: string}>{};
+            this.dependencies = {} as {string: string};
         }
         if (!this.devDependencies) {
-            this.devDependencies = <{string: string}>{};
+            this.devDependencies = {} as {string: string};
         }
         if (!this.peerDependencies) {
-            this.peerDependencies = <{string: string}>{};
+            this.peerDependencies = {} as {string: string};
         }
     }
 }

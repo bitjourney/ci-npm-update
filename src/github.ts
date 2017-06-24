@@ -6,14 +6,14 @@ export interface GitHubPullRequestResponse {
     id: string;
     url: string;
     html_url: string;
-};
+}
 
 export interface GitHubPullRequestParameters {
     title: string;
     body: string;
     head: string;
     base: string;
-};
+}
 
 export interface GitHubTagResponse {
     name: string;

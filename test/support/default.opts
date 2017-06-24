@@ -1,4 +1,4 @@
- --compilers ts:ts-node/register
+ --compilers ts:espower-typescript/guess
 
 --require source-map-support/register
 --require ./test/support/mocha-setup-node.js

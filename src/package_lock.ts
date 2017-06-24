@@ -4,11 +4,11 @@ import { NpmConfig } from "./npm_config";
 
 export const DEFAULT_LOCK_FILE = "package-lock.json";
 
-export type ShrinkWrapData = {
+export interface ShrinkWrapData {
     version: string;
     from: string;
     resolved: string;
-};
+}
 
 export class PackageLock {
 
@@ -38,7 +38,7 @@ export class PackageLock {
     }
 
     getDependencyData(name: string): ShrinkWrapData {
-        return (<any>this.dependencies)[name];
+        return (this.dependencies as any)[name];
     }
 
     getDependencyVersion(name: string): string {
@@ -76,7 +76,7 @@ export class ShrinkWrapDiff {
             ...newer.getDependencyNames(),
         ]);
 
-        const result: Promise<GitHubCompareView>[] = [];
+        const result: Array<Promise<GitHubCompareView>> = [];
         union.forEach((name) => {
             const olderOne = older.getDependencyData(name);
             const newerOne = newer.getDependencyData(name);
