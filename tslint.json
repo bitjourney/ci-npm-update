@@ -20,7 +20,10 @@
         ],
         "no-var-requires": false,
         "no-require-imports": false,
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "max-classes-per-file": false
     }
 }
