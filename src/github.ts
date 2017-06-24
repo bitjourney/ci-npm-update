@@ -2,18 +2,22 @@ const request = require("request");
 
 const USER_AGENT = "ci-npm-update/1.0";
 
-export type GitHubPullRequestResponse = {
-    id: string,
-    url: string,
-    html_url: string,
+export interface GitHubPullRequestResponse {
+    id: string;
+    url: string;
+    html_url: string;
 };
 
-export type GitHubPullRequestParameters = {
-    title: string,
-    body: string,
-    head: string,
-    base: string,
+export interface GitHubPullRequestParameters {
+    title: string;
+    body: string;
+    head: string;
+    base: string;
 };
+
+export interface GitHubTagResponse {
+    name: string;
+}
 
 export class GitHubApi {
 
@@ -77,16 +81,39 @@ export class GitHubApi {
         this.repository = GitHubApi.extractRepository(options.repositoryUrl);
     }
 
+    buildRequestHeaders() {
+        return {
+            "user-agent": USER_AGENT,
+            "authorization": `token ${this.token}`,
+        };
+    }
+
+    getTags(): Promise<GitHubTagResponse> {
+        return new Promise<GitHubTagResponse>((resolve, reject) => {
+            const url = `${this.endpoint}/repos/${this.owner}/${this.repository}/tags`;
+            request.get(url,
+                {
+                    headers: this.buildRequestHeaders(),
+                },
+                (err: any, _response: any, body: any) => {
+                    if (err) {
+                        reject(err);
+                    } else if (body.errors) {
+                        reject(new Error(`Failed to create a pull request (${url}): ${JSON.stringify(body)}`));
+                    } else {
+                        resolve(body);
+                    }
+                });
+        });
+    }
+
     createPullRequest(parameters: GitHubPullRequestParameters): Promise<GitHubPullRequestResponse> {
         return new Promise<GitHubPullRequestResponse>((resolve, reject) => {
             // https://developer.github.com/v3/pulls/#create-a-pull-request
             const url = `${this.endpoint}/repos/${this.owner}/${this.repository}/pulls`;
             request.post(url,
                 {
-                    headers: {
-                        "user-agent": USER_AGENT,
-                        "authorization": `token ${this.token}`,
-                    },
+                    headers: this.buildRequestHeaders(),
                     json: {
                         title: parameters.title,
                         body: parameters.body,
