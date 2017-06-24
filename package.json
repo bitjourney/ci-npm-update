@@ -31,6 +31,7 @@
   "dependencies": {
     "@types/node": "^6.0.41",
     "moment": "^2.14.1",
+    "source-map-support": "^0.4.15",
     "request": "^2.74.0"
   },
   "peerDependencies": {
@@ -41,7 +42,6 @@
     "@types/power-assert": "^0.0.27",
     "mocha": "^2.5.1",
     "power-assert": "^1.4.1",
-    "source-map-support": "^0.4.0",
     "to-iso-string": "^0.0.2",
     "ts-node": "^1.2.1",
     "tslint": "^3.13.0",

@@ -6,6 +6,18 @@ function die(message: string) {
     process.exit(1);
 }
 
+function help() {
+    console.log(`
+ci-npm-update --token GITHUB_ACCESS_TOKEN --user-name NAME --user-email EMAIL --execute
+    `.trim());
+    process.exit();
+}
+
+function version() {
+    console.log(`v${require("../package").version}`);
+    process.exit();
+}
+
 const options: main.Options = {
     githubAccessToken: process.env.GITHUB_ACCESS_TOKEN,
     gitUserName: process.env.GIT_USER_NAME,
@@ -33,6 +45,10 @@ for (let i = 0; i < args.length; i++) {
         options.gitUserEmail = args[i];
     } else if (arg === "--execute") {
         options.execute = true;
+    } else if (arg === "--help") {
+        help();
+    } else if (arg === "--version") {
+        version();
     } else {
         die(`Unknown option: ${arg}`);
     }
