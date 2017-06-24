@@ -36,6 +36,7 @@ export class GitHubApi {
             "git\\+ssh:\\/\\/git@",
             "http:\\/\\/",
             "https:\\/\\/",
+            "ssh://git@",
         ];
         const hostRegexp = "([^\\/:]+)[\\/:]";
         const pathRegexp = "([^\\/]+)\\/([^\\/]+)(?!\\.git)";
