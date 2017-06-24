@@ -46,35 +46,29 @@ export function setupGitConfig(gitUserName: string, gitUserEmail: string): Promi
     return Promise.all<any>([setUserNamePromise, setUserEmailPromise]);
 }
 
-export function createGitBranch(branch: string): Promise<PackageLock> {
+export async function createGitBranch(branch: string): Promise<PackageLock> {
     console.log(`Creating a branch: ${branch}`);
 
-    return run(`git checkout -b ${branch}`).then(() => {
-        // npm update --depth 9999 might cause OOM:
-        // https://github.com/npm/npm/issues/11876
-        return run(`rm -rf node_modules ${DEFAULT_LOCK_FILE} ; npm install`);
-    }).then(() => {
-        return run(`git add ${DEFAULT_LOCK_FILE}`);
-    }).then(() => {
-        return run("git diff --cached");
-    }).then((diff) => {
-        if (diff.trim()) {
-            return run(`git commit -m 'update npm dependencies'`);
-        } else {
-            return run("git checkout -").then(() => {
-                return Promise.reject(new AllDependenciesAreUpToDate());
-            });
-        }
-    }).then(() => {
-        return PackageLock.read();
-    }).then((packageLock) => {
-        return Promise.all([
-            Promise.resolve(packageLock),
-            run("git checkout -"),
-        ]);
-    }).then(([packageLock]) => {
-        return Promise.resolve(packageLock);
-    });
+    await run(`git checkout -b ${branch}`);
+    await run(`rm -rf node_modules ${DEFAULT_LOCK_FILE}`);
+
+    // npm update --depth 9999 might cause OOM:
+    // https://github.com/npm/npm/issues/11876
+    await run(`npm install`);
+
+    await run(`git add ${DEFAULT_LOCK_FILE}`);
+    const diff = (await run("git diff --cached")).trim();
+
+    if (diff) {
+        await run(`git commit -m 'update npm dependencies'`);
+    } else {
+        await run("git checkout -");
+        return Promise.reject(new AllDependenciesAreUpToDate());
+    }
+
+    const packageLock = await PackageLock.read();
+    await run("git checkout -");
+    return Promise.resolve(packageLock);
 }
 
 export async function start({
