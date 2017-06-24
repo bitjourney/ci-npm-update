@@ -6,7 +6,12 @@ dependencies:
   pre:
     - npm install -g npm@5
     - npm run setup
+
+compile:
+  override:
     - npm run build
+
+test:
   post:
     - bin/ci-npm-update
 
