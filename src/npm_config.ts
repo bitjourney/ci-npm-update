@@ -3,6 +3,10 @@ import * as fs from "fs";
 
 const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
 
+export interface DependencyMapType {
+    [name: string]: string;
+}
+
 export class NpmConfig {
 
     static readFromFile(packageJsonFile: string = "package.json"): Promise<NpmConfig> {
@@ -65,21 +69,21 @@ export class NpmConfig {
         url: string;
     };
 
-    dependencies: {string: string};
-    devDependencies: {string: string};
-    peerDependencies: {string: string};
+    dependencies: DependencyMapType;
+    devDependencies: DependencyMapType;
+    peerDependencies: DependencyMapType;
 
     constructor(json: any) {
         Object.assign(this, json);
 
         if (!this.dependencies) {
-            this.dependencies = {} as {string: string};
+            this.dependencies = {} as DependencyMapType;
         }
         if (!this.devDependencies) {
-            this.devDependencies = {} as {string: string};
+            this.devDependencies = {} as DependencyMapType;
         }
         if (!this.peerDependencies) {
-            this.peerDependencies = {} as {string: string};
+            this.peerDependencies = {} as DependencyMapType;
         }
     }
 }
