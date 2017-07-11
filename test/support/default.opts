@@ -7,4 +7,4 @@
 --check-leaks
 
 --recursive
---timeout 1000
+--timeout 2000

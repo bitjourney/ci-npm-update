@@ -1,10 +1,14 @@
 const request = require("request");
 import * as fs from "fs";
 
-const REGISTRY_ENDPOINT = "http://registry.npmjs.org";
+const REGISTRY_ENDPOINT = "https://registry.npmjs.org";
 
 export interface DependencyMapType {
     [name: string]: string;
+}
+
+function escapePackageName(name: string) {
+    return name.replace(/\//g, encodeURIComponent("/"));
 }
 
 export class NpmConfig {
@@ -23,7 +27,7 @@ export class NpmConfig {
 
     static getFromRegistry(name: string, version: string): Promise<NpmConfig> {
         return new Promise<NpmConfig>((resolve, _reject) => {
-            const url = `${REGISTRY_ENDPOINT}/${name}/${version}`;
+            const url = `${REGISTRY_ENDPOINT}/${escapePackageName(name)}/=${encodeURIComponent(version)}`;
             request(url, (err: any, res: any, body: any) => {
                 if (err) {
                     resolve(new NpmConfig({
@@ -63,6 +67,7 @@ export class NpmConfig {
 
     name: string;
     version: string;
+    description: string | undefined | null;
 
     repository: {
         type: string;
@@ -85,5 +90,9 @@ export class NpmConfig {
         if (!this.peerDependencies) {
             this.peerDependencies = {} as DependencyMapType;
         }
+    }
+
+    summary(): string {
+        return `${this.name}@${this.version} - ${this.description || ""}`;
     }
 }

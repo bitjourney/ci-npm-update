@@ -10,7 +10,7 @@ This is inspired by [circleci-bundle-update-pr](https://github.com/masutaka/circ
 
 # Install
 
-```sh
+```console
 npm install --save-dev ci-npm-update
 ```
 
@@ -26,7 +26,7 @@ and set SSH keys to push to the repos from CI.
 If the CI environment has no git configuration, also set `GIT_USER_NAME` and `GIT_USER_EMAIL`
 to commit patches in CI.
 
-```sh
+```console
 export GITHUB_ACCESS_TOKEN=...
 export GIT_USER_NAME=gfx
 export GIT_USER_EMAIL=gfx@users.noreply.github.com
@@ -36,7 +36,7 @@ export GIT_USER_EMAIL=gfx@users.noreply.github.com
 
 By default, `ci-npm-update` runs in dry-run mode. Set `--execute` to make pull-requests.
 
-```sh
+```console
 ci-npm-update --execute
 ```
 
@@ -44,31 +44,37 @@ ci-npm-update --execute
 
 If you only run it in dry-run mode, no configuration is required:
 
-```
+```console
 # run in dry-run mode:
 ci-npm-update
 ```
 
 If you want to make pull-requests in your local machine, use `GITHUB_ACCESS_TOKEN`:
 
-```
+```console
 # envchain is recommended
 envchain --set github GITHUB_ACCESS_TOKEN
 # run:
 envchain github ci-npm-update --execute
 ```
 
+In addition, `--list` is provided to list dependencies with short descriptions, intended for sanity check in development.
+
+```console
+ci-npm-update --list
+```
+
 # Development
 
 Setup:
 
-```
+```console
 npm run setup
 ```
 
 Easy test command in dry-run mode:
 
-```
+```console
 npm run build && envchain github node bin/ci-npm-update
 ```
 
@@ -80,7 +86,7 @@ If you want to setup heroku schedulers, there's a template for it:
 
 To test it, run the following command:
 
-```sh
+```console
 heroku run './build-circleci'
 ```
 
