@@ -42,7 +42,9 @@ export class PackageLock {
     }
 
     getDependencyVersion(name: string): string {
-        return this.getDependencyData(name).version;
+        const version = this.getDependencyData(name).version;
+        console.assert(version, `version of ${name}`);
+        return version;
     }
 
     getDependencyVersionRange(name: string): string {

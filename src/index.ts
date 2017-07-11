@@ -129,3 +129,13 @@ export async function start({
         return Promise.reject(new SkipToCreatePullRequest());
     }
 }
+
+
+export async function listDependencies() {
+    const packageLock = await PackageLock.read();
+    for (const name of packageLock.getDependencyNames()) {
+        const version = packageLock.getDependencyVersion(name);
+        const npmConfig = await NpmConfig.getFromRegistry(name, version);
+        console.log(npmConfig.summary());
+    }
+}
