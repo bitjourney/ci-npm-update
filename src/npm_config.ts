@@ -8,7 +8,7 @@ export interface DependencyMapType {
 }
 
 function escapePackageName(name: string) {
-    return name.replace(/\//g, encodeURIComponent('/'));
+    return name.replace(/\//g, encodeURIComponent("/"));
 }
 
 export class NpmConfig {
@@ -93,6 +93,6 @@ export class NpmConfig {
     }
 
     summary(): string {
-        return `${this.name}@${this.version} - ${this.description || ''}`;
+        return `${this.name}@${this.version} - ${this.description || ""}`;
     }
 }

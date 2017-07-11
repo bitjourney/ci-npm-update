@@ -130,7 +130,6 @@ export async function start({
     }
 }
 
-
 export async function listDependencies() {
     const packageLock = await PackageLock.read();
     for (const name of packageLock.getDependencyNames()) {
