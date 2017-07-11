@@ -1,5 +1,13 @@
 # The Reivision History of ci-npm-update
 
+## v2.0.0 - 2017/07/11
+
+* Support npm@5's `package-lock.json`
+  * NOTE: `npm-shrinkwrap.json` is no longer supported, but you can easily migrate it to `package-lock.json`
+  * See [The npm Blog — v5\.0\.0](http://blog.npmjs.org/post/161081169345/v500) for deails of npm@5
+* Fix scoped packages in pull-request descriptions, esp. `@types/*`
+
+
 ## v1.0.9 - 2016/10/23
 
 * Fix maxBuffer exceeded errors [#68](https://github.com/bitjourney/ci-npm-update/pull/68)
