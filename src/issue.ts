@@ -75,11 +75,11 @@ export function createBody(list: GitHubCompareView[], npmConfigPromise: Promise<
 function compareViewToMarkdown(c: GitHubCompareView): string {
     if (c.hasRepositoryUrl()) {
         if (c.hasDiffUrl()) {
-            return `* ${c.name}: [${c.getVersionRange()}](${c.getDiffUrl()})\n`;
+            return `* \`${c.name}\`: [${c.getVersionRange()}](${c.getDiffUrl()})\n`;
         } else {
-            return `* ${c.name} ${c.getRepositoryUrl()}\n`;
+            return `* \`${c.name}\` ${c.getRepositoryUrl()}\n`;
         }
     } else {
-        return `* ${c.name}\n`;
+        return `* \`${c.name}\`\n`;
     }
 }
