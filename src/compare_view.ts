@@ -3,7 +3,7 @@ import { NpmConfig } from "./npm_config";
 
 export class GitHubCompareView {
 
-    static fixupUrl(repository: { url: string }): string | null {
+    static fixupUrl(repository: { url: string } | undefined): string | null {
         if (!(repository && repository.url)) {
             return null;
         }
@@ -23,7 +23,7 @@ export class GitHubCompareView {
     repositoryUrl: string | null;
 
     constructor(installedVersion: string | null, latestVersion: string | null, npmConfig: NpmConfig) {
-        this.name = npmConfig.name;
+        this.name = npmConfig.name || "(undefined name)";
         this.installedVersion = installedVersion;
         this.latestVersion = latestVersion;
         this.repositoryUrl = GitHubCompareView.fixupUrl(npmConfig.repository);
