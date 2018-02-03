@@ -4,7 +4,12 @@ import * as fs from "fs";
 const REGISTRY_ENDPOINT = "https://registry.npmjs.org";
 
 export interface DependencyMapType {
-    [name: string]: string;
+    readonly [name: string]: string;
+}
+
+export interface RepositoryType {
+    readonly type: string;
+    readonly url: string;
 }
 
 function escapePackageName(name: string) {
@@ -65,31 +70,33 @@ export class NpmConfig {
 
     // https://docs.npmjs.com/files/package.json
 
-    name: string;
-    version: string;
-    description: string | undefined | null;
+    readonly json: any;
 
-    repository: {
-        type: string;
-        url: string;
-    };
+    get name(): string {
+        return this.json.name;
+    }
+
+    get version(): string {
+        return this.json.version;
+    }
+
+    get description(): string | undefined | null {
+        return this.json.description;
+    }
+
+    get repository(): RepositoryType {
+        return this.json.repository;
+    }
 
     dependencies: DependencyMapType;
     devDependencies: DependencyMapType;
     peerDependencies: DependencyMapType;
 
     constructor(json: any) {
-        Object.assign(this, json);
-
-        if (!this.dependencies) {
-            this.dependencies = {} as DependencyMapType;
-        }
-        if (!this.devDependencies) {
-            this.devDependencies = {} as DependencyMapType;
-        }
-        if (!this.peerDependencies) {
-            this.peerDependencies = {} as DependencyMapType;
-        }
+        this.json = json;
+        this.dependencies = (json.dependencies || {}) as DependencyMapType;
+        this.devDependencies = (json.devDependencies || {}) as DependencyMapType;
+        this.peerDependencies = (json.peerDependencies || {}) as DependencyMapType;
     }
 
     summary(): string {

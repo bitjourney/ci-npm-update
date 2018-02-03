@@ -29,8 +29,10 @@ export class PackageLock {
 
     private dependencies: Map<string, ShrinkWrapData>;
 
-    constructor(json: any) {
-        Object.assign(this, json);
+    constructor(json: { name: any, version: any, dependencies: any }) {
+        this.name = json.name;
+        this.version = json.version;
+        this.dependencies = json.dependencies;
     }
 
     getDependencyNames(): string[] {
